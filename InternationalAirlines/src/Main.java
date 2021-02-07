@@ -1,3 +1,8 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,7 +17,26 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        startSQL();
     }
+
+   public static void startSQL(){
+       try{
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airline", "root", "AmericanSpirit6");
+           Statement stmt = con.createStatement();
+           ResultSet rs=stmt.executeQuery(("select * from customer;"));
+           while(rs.next())
+           {
+               System.out.println(rs.getString(1));
+           }
+           con.close();
+       }
+       catch(Exception e)
+       {
+           System.out.println(e);
+       }
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
