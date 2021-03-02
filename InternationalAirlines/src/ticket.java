@@ -1,22 +1,15 @@
+package InternationalAirlines.src;
 
-import java.awt.Image;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.toedter.calendar.JCalendar;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -425,7 +418,7 @@ public class ticket extends javax.swing.JInternalFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-             con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airline","airlineManager","123");
              pst = con.prepareStatement("SELECT * from flight WHERE source = ? and depart = ?");
              
              
@@ -489,7 +482,7 @@ public class ticket extends javax.swing.JInternalFrame {
     {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airline","airlineManager","123");
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery("select MAX(id) from ticket");
             rs.next();
@@ -541,7 +534,7 @@ public class ticket extends javax.swing.JInternalFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airline","airlineManager","123");
             pst = con.prepareStatement("select * from customer where id = ?");
             pst.setString(1, id);
             ResultSet rs = pst.executeQuery();
@@ -618,8 +611,10 @@ public class ticket extends javax.swing.JInternalFrame {
          String flightclass = txtclass.getSelectedItem().toString().trim();  
          String price = txtprice.getText();
          String seats = txtseats.getValue().toString();
+        JCalendar txtdob = new JCalendar();
+
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-        String date = da.format(txtdate.getDate());
+        String date = da.format(txtdob.getDate());
 
       
         
@@ -628,7 +623,7 @@ public class ticket extends javax.swing.JInternalFrame {
       
         try {
             Class.forName("com.mysql.jdbc.Driver");
-             con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airline","airlineManager","123");
             pst = con.prepareStatement("insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
             
             pst.setString(1, ticketid);

@@ -1,3 +1,5 @@
+package InternationalAirlines.src;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,7 +25,7 @@ public class Main extends javax.swing.JFrame {
    public static void startSQL(){
        try{
            Class.forName("com.mysql.cj.jdbc.Driver");
-           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airline", "root", "AmericanSpirit6");
+           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
            Statement stmt = con.createStatement();
            ResultSet rs=stmt.executeQuery(("select * from customer;"));
            while(rs.next())

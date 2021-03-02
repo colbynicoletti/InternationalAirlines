@@ -1,27 +1,22 @@
+package InternationalAirlines.src;
 
 
+import com.toedter.calendar.JCalendar;
 
-import java.awt.Image;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /*
@@ -32,6 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class addCustomer extends javax.swing.JInternalFrame {
+
 
     /**
      * Creates new form addCustomer
@@ -335,7 +331,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
     {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airline","airlineManager","123");
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery("select MAX(id) from customer");
             rs.next();
@@ -440,7 +436,8 @@ public class addCustomer extends javax.swing.JInternalFrame {
          String nic = txtnic.getText(); 
         String passport = txtpassport.getText();
          String address = txtaddress.getText();
-        
+        JCalendar txtdob = new JCalendar();
+
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
         String date = da.format(txtdob.getDate());
         String Gender;
@@ -458,7 +455,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
          
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airline","airlineManager","123");
             pst = con.prepareStatement("insert into customer(id,firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
             
             pst.setString(1, id);
@@ -527,5 +524,6 @@ public class addCustomer extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtnic;
     private javax.swing.JTextField txtpassport;
     private javax.swing.JLabel txtphoto;
+    private java.text.DateFormat txtdob;
     // End of variables declaration//GEN-END:variables
 }

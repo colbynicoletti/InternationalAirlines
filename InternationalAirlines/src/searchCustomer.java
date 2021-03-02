@@ -1,30 +1,24 @@
+package InternationalAirlines.src;
 
 
+import com.toedter.calendar.JCalendar;
 
-import java.awt.Image;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /*
@@ -412,14 +406,15 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-         String id = txtcustid.getText();
-         String firstname = txtfirstname.getText();
-         String lastname = txtlastname.getText();
-         String nic = txtnic.getText(); 
+        String id = txtcustid.getText();
+        String firstname = txtfirstname.getText();
+        String lastname = txtlastname.getText();
+        String nic = txtnic.getText();
         String passport = txtpassport.getText();
-         String address = txtaddress.getText();
-        
+        String address = txtaddress.getText();
+        JCalendar txtdob = new JCalendar();
         DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+
         String date = da.format(txtdob.getDate());
         String Gender;
         
@@ -436,7 +431,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
          
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airline","airlineManager","123");
             pst = con.prepareStatement("update customer set firstname = ?,lastname = ?,nic = ?,passport = ?,address= ?,dob = ?,gender = ?,contact = ?,photo = ? where id = ?");
             
 
@@ -487,7 +482,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/airline","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/airline","airlineManager","123");
             pst = con.prepareStatement("select * from customer where id = ?");
             pst.setString(1, id);
             ResultSet rs = pst.executeQuery();
@@ -604,5 +599,6 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtnic;
     private javax.swing.JTextField txtpassport;
     private javax.swing.JLabel txtphoto;
+    private JCalendar txtdob;
     // End of variables declaration//GEN-END:variables
 }
