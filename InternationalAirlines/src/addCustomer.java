@@ -30,7 +30,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
 
     /**
-     * Creates new form addCustomer
+     * Creates new form addCustomer lol
      */
     public addCustomer() {
         initComponents();
