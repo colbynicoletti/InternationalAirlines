@@ -13,12 +13,12 @@ import java.util.logging.Logger;
  */
 
 
-public class ticketreport extends javax.swing.JInternalFrame {
+public class TicketReport extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ticketreport
      */
-    public ticketreport() {
+    public TicketReport() {
         initComponents();
         LoadData();
     }
@@ -131,9 +131,9 @@ PreparedStatement pst;
              
              
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Ticket.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Ticket.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

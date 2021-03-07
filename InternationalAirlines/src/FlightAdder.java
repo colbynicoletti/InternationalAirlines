@@ -14,12 +14,12 @@ import java.util.logging.Logger;
  */
 
 
-public class addflight extends javax.swing.JInternalFrame {
+public class FlightAdder extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form addflight
      */
-    public addflight() {
+    public FlightAdder() {
         initComponents();
         autoID();
     }
@@ -39,76 +39,76 @@ public class addflight extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txtflightid = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        flightIdLabel = new javax.swing.JLabel();
+        textFlightId = new javax.swing.JLabel();
+        flightNameLabel = new javax.swing.JLabel();
+        sourceLabel = new javax.swing.JLabel();
+        departureLabel = new javax.swing.JLabel();
         txtflightname = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
         txtdate = new com.toedter.calendar.JDateChooser();
-        jLabel7 = new javax.swing.JLabel();
+        departureTimeLabel = new javax.swing.JLabel();
         txtdtime = new javax.swing.JTextField();
         txtarrtime = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        arrivalTime = new javax.swing.JLabel();
+        flightChargeLabel = new javax.swing.JLabel();
         txtflightcharge = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        txtsource = new javax.swing.JComboBox<>();
-        txtdepart = new javax.swing.JComboBox<>();
+        addButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        textSource = new javax.swing.JComboBox<>();
+        textDepart = new javax.swing.JComboBox<>();
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Flight ID");
+        flightIdLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        flightIdLabel.setForeground(new java.awt.Color(255, 255, 255));
+        flightIdLabel.setText("Flight ID");
 
-        txtflightid.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtflightid.setForeground(new java.awt.Color(255, 255, 0));
-        txtflightid.setText("jLabel2");
+        textFlightId.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        textFlightId.setForeground(new java.awt.Color(255, 255, 0));
+        textFlightId.setText("jLabel2");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Flight Name");
+        flightNameLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        flightNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        flightNameLabel.setText("Flight Name");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Source");
+        sourceLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        sourceLabel.setForeground(new java.awt.Color(255, 255, 255));
+        sourceLabel.setText("Source");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Departure");
+        departureLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        departureLabel.setForeground(new java.awt.Color(255, 255, 255));
+        departureLabel.setText("Departure");
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Date");
+        dateLabel.setForeground(new java.awt.Color(255, 255, 255));
+        dateLabel.setText("Date");
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Dep Time");
+        departureTimeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        departureTimeLabel.setText("Dep Time");
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Arr Time");
+        arrivalTime.setForeground(new java.awt.Color(255, 255, 255));
+        arrivalTime.setText("Arr Time");
 
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Flight Charge");
+        flightChargeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        flightChargeLabel.setText("Flight Charge");
 
-        jButton1.setText("Add");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        txtsource.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
+        textSource.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
 
-        txtdepart.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
+        textDepart.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,45 +119,45 @@ public class addflight extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
+                            .addComponent(flightIdLabel)
+                            .addComponent(flightNameLabel))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
-                                .addComponent(txtflightid))
+                                .addComponent(textFlightId))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(txtflightname, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(sourceLabel)
+                            .addComponent(departureLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtsource, 0, 136, Short.MAX_VALUE)
-                            .addComponent(txtdepart, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(textSource, 0, 136, Short.MAX_VALUE)
+                            .addComponent(textDepart, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(103, 103, 103)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                            .addComponent(dateLabel)
+                            .addComponent(departureTimeLabel)
+                            .addComponent(arrivalTime))
                         .addGap(62, 62, 62)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtdate, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                             .addComponent(txtdtime)
                             .addComponent(txtarrtime)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(flightChargeLabel)
                         .addGap(52, 52, 52)
                         .addComponent(txtflightcharge, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(95, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
         jPanel1Layout.setVerticalGroup(
@@ -166,37 +166,37 @@ public class addflight extends javax.swing.JInternalFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(txtflightid)
-                        .addComponent(jLabel6))
+                        .addComponent(flightIdLabel)
+                        .addComponent(textFlightId)
+                        .addComponent(dateLabel))
                     .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(flightNameLabel)
                     .addComponent(txtflightname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
+                    .addComponent(departureTimeLabel)
                     .addComponent(txtdtime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(sourceLabel)
                     .addComponent(txtarrtime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtsource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(arrivalTime)
+                    .addComponent(textSource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtdepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(departureLabel)
+                            .addComponent(textDepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
+                            .addComponent(flightChargeLabel)
                             .addComponent(txtflightcharge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43))
         );
 
@@ -233,13 +233,13 @@ public class addflight extends javax.swing.JInternalFrame {
             rs.getString("MAX(id)");
             if(rs.getString("MAX(id)") == null)
             {
-                txtflightid.setText("FO001");
+                textFlightId.setText("FO001");
             }
             else
             {
                 long id = Long.parseLong(rs.getString("MAX(id)").substring(2,rs.getString("MAX(id)").length()));
                 id++;
-                 txtflightid.setText("FO" + String.format("%03d", id));
+                 textFlightId.setText("FO" + String.format("%03d", id));
                 
                 
             }
@@ -247,9 +247,9 @@ public class addflight extends javax.swing.JInternalFrame {
             
             
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     
@@ -270,19 +270,19 @@ public class addflight extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-           String id = txtflightid.getText();
-         String flightname = txtflightname.getText();
+           String id = textFlightId.getText();
+         String flightName = txtflightname.getText();
          
-         String source = txtsource.getSelectedItem().toString().trim();
-         String depart = txtdepart.getSelectedItem().toString().trim(); 
+         String source = textSource.getSelectedItem().toString().trim();
+         String depart = textDepart.getSelectedItem().toString().trim();
          
        DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
         String date = da.format(txtdate.getDate());
 
       
-         String departtime = txtdtime.getText();
-         String arrtime = txtarrtime.getText();
-         String flightcharge = txtflightcharge.getText();
+         String departTime = txtdtime.getText();
+         String arrivalTime = txtarrtime.getText();
+         String flightCharge = txtflightcharge.getText();
          
          
       
@@ -292,22 +292,22 @@ public class addflight extends javax.swing.JInternalFrame {
             pst = con.prepareStatement("insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
             
             pst.setString(1, id);
-            pst.setString(2, flightname);
+            pst.setString(2, flightName);
             pst.setString(3, source);
             pst.setString(4, depart);
             pst.setString(5, date);
-            pst.setString(6, departtime);
-            pst.setString(7, arrtime);
-            pst.setString(8, flightcharge);
+            pst.setString(6, departTime);
+            pst.setString(7, arrivalTime);
+            pst.setString(8, flightCharge);
            
             pst.executeUpdate();
             
             
             JOptionPane.showMessageDialog(null,"Flight Createdd.........");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
         }
            
             
@@ -325,24 +325,24 @@ public class addflight extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel flightIdLabel;
+    private javax.swing.JLabel flightNameLabel;
+    private javax.swing.JLabel sourceLabel;
+    private javax.swing.JLabel departureLabel;
+    private javax.swing.JLabel dateLabel;
+    private javax.swing.JLabel departureTimeLabel;
+    private javax.swing.JLabel arrivalTime;
+    private javax.swing.JLabel flightChargeLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtarrtime;
     private com.toedter.calendar.JDateChooser txtdate;
-    private javax.swing.JComboBox<String> txtdepart;
+    private javax.swing.JComboBox<String> textDepart;
     private javax.swing.JTextField txtdtime;
     private javax.swing.JTextField txtflightcharge;
-    private javax.swing.JLabel txtflightid;
+    private javax.swing.JLabel textFlightId;
     private javax.swing.JTextField txtflightname;
-    private javax.swing.JComboBox<String> txtsource;
+    private javax.swing.JComboBox<String> textSource;
     // End of variables declaration//GEN-END:variables
 }
