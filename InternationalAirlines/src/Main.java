@@ -50,17 +50,17 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        customerMenuBar = new javax.swing.JMenuBar();
+        customerMenu = new javax.swing.JMenu();
+        addCustomerItem = new javax.swing.JMenuItem();
+        searchCustomerMenu = new javax.swing.JMenuItem();
+        ticketsMenu = new javax.swing.JMenu();
+        bookTicketItem = new javax.swing.JMenuItem();
+        ticketReportItem = new javax.swing.JMenuItem();
+        flightMenu = new javax.swing.JMenu();
+        addFlightMenu = new javax.swing.JMenuItem();
+        userMenu = new javax.swing.JMenu();
+        userCreationMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1366, 768));
@@ -76,71 +76,71 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 279, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Customer");
+        customerMenu.setText("Customer");
 
-        jMenuItem1.setText("Add Customer");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        addCustomerItem.setText("Add Customer");
+        addCustomerItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                addCustomerAction(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        customerMenu.add(addCustomerItem);
 
-        jMenuItem2.setText("Search Customer");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        searchCustomerMenu.setText("Search Customer");
+        searchCustomerMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                searchCustomerAction(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        customerMenu.add(searchCustomerMenu);
 
-        jMenuBar1.add(jMenu1);
+        customerMenuBar.add(customerMenu);
 
-        jMenu2.setText("Tickets");
+        ticketsMenu.setText("Tickets");
 
-        jMenuItem3.setText("Book Ticket");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        bookTicketItem.setText("Book Ticket");
+        bookTicketItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                ticketAction(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        ticketsMenu.add(bookTicketItem);
 
-        jMenuItem6.setText("Ticket Report");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        ticketReportItem.setText("Ticket Report");
+        ticketReportItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                ticketReportAction(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        ticketsMenu.add(ticketReportItem);
 
-        jMenuBar1.add(jMenu2);
+        customerMenuBar.add(ticketsMenu);
 
-        jMenu3.setText("Flight");
+        flightMenu.setText("Flight");
 
-        jMenuItem4.setText("Add Flight");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        addFlightMenu.setText("Add Flight");
+        addFlightMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                addFlightAction(evt);
             }
         });
-        jMenu3.add(jMenuItem4);
+        flightMenu.add(addFlightMenu);
 
-        jMenuBar1.add(jMenu3);
+        customerMenuBar.add(flightMenu);
 
-        jMenu4.setText("User");
+        userMenu.setText("User");
 
-        jMenuItem5.setText("UserCreation");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        userCreationMenu.setText("UserCreation");
+        userCreationMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                userCreationAction(evt);
             }
         });
-        jMenu4.add(jMenuItem5);
+        userMenu.add(userCreationMenu);
 
-        jMenuBar1.add(jMenu4);
+        customerMenuBar.add(userMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(customerMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,55 +156,55 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void addCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         
-        addCustomer cus = new addCustomer();
+        CustomerAdder cus = new CustomerAdder();
         jDesktopPane1.add(cus);
         cus.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void searchCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         
-        searchCustomer scus = new searchCustomer();
+        CustomerSearch scus = new CustomerSearch();
         jDesktopPane1.add(scus);
         scus.setVisible(true);
         
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void addFlightAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        addflight f = new addflight();
+        FlightAdder f = new FlightAdder();
         jDesktopPane1.add(f);
         f.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void ticketAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-         ticket t = new ticket();
+         Ticket t = new Ticket();
         jDesktopPane1.add(t);
         t.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void ticketReportAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         
-        ticketreport ti = new ticketreport();
+        TicketReport ti = new TicketReport();
         jDesktopPane1.add(ti);
         ti.setVisible(true);
         
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void userCreationAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         
-         userCreation u = new userCreation();
+         UserCreator u = new UserCreator();
         jDesktopPane1.add(u);
         u.setVisible(true);
         
@@ -248,16 +248,16 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenu customerMenu;
+    private javax.swing.JMenu ticketsMenu;
+    private javax.swing.JMenu flightMenu;
+    private javax.swing.JMenu userMenu;
+    private javax.swing.JMenuBar customerMenuBar;
+    private javax.swing.JMenuItem addCustomerItem;
+    private javax.swing.JMenuItem searchCustomerMenu;
+    private javax.swing.JMenuItem bookTicketItem;
+    private javax.swing.JMenuItem addFlightMenu;
+    private javax.swing.JMenuItem userCreationMenu;
+    private javax.swing.JMenuItem ticketReportItem;
     // End of variables declaration//GEN-END:variables
 }

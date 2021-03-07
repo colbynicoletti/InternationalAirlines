@@ -28,12 +28,12 @@ import java.util.logging.Logger;
  */
 
 
-public class searchCustomer extends javax.swing.JInternalFrame {
+public class CustomerSearch extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form addCustomer
      */
-    public searchCustomer() {
+    public CustomerSearch() {
         initComponents();
        
     }
@@ -386,7 +386,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
               
               
         } catch (IOException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
         }
         
        
@@ -452,9 +452,9 @@ public class searchCustomer extends javax.swing.JInternalFrame {
             
             
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
         }
             
          
@@ -556,11 +556,11 @@ public class searchCustomer extends javax.swing.JInternalFrame {
               
               
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerSearch.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerSearch.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
-            Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerSearch.class.getName()).log(Level.SEVERE, null, ex);
         }
           
         
