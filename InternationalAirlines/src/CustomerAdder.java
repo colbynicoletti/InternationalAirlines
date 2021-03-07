@@ -475,16 +475,6 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
 
     String contact = txtcontact.getText();
 
-    String firstnamePattern = "/[A-Z]/";
-    String lastnamePattern = "/[A-Z]/";
-    String nicPattern = "/[0-9]{8}/";
-    String passportPattern = "/[0-9]{4}/";
-    String addressPattern = "/[.]{200}/";
-    String datePattern = "/[0-9]{4}[-][0-9]{2}[-][0-9]{2}/";
-    String contactPattern = "/[0-9]{8}/";
-    String userimagePattern = "/[.]/";
-
-
     try {
       Class.forName("com.mysql.jdbc.Driver");
       con = DriverManager
@@ -492,80 +482,15 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
       pst = con.prepareStatement(
           "insert into customer(id,firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
 
-
       pst.setString(1, id);
-
-      if (firstname.toUpperCase().matches(firstnamePattern))
-      {
-        pst.setString(2, firstname.toUpperCase());
-      } else
-      {
-        throw new Exception("BAD FIRSTNAME ->" + firstname.toUpperCase());
-      }
-      if (lastname.toUpperCase().matches(lastnamePattern))
-      {
-        pst.setString(3, lastname.toUpperCase());
-      }
-      else
-      {
-        throw new Exception("BAD LASTNAME ->" + lastname.toUpperCase());
-      }
-      if (nic.matches(nicPattern))
-      {
-        pst.setString(4,nic);
-      }
-      else
-      {
-        throw new Exception("BAD NIC");
-      }
-
-      if (passport.matches(passportPattern))
-      {
-        pst.setString(5,passport);
-      }
-      else
-      {
-        throw new Exception("BAD PASSPORT");
-      }
-
-      if (address.matches(addressPattern))
-      {
-        pst.setString(6, address);
-      }
-      else
-      {
-        throw new Exception("BAD ADDRESS");
-      }
-
-      if (date.matches(datePattern))
-      {
-        pst.setString(7, date);
-      }
-      else
-      {
-        throw new Exception("BAD DATE");
-      }
-
-      if (Gender.contains("Male")){
-        pst.setString(8, Gender);
-      } else if (Gender.contains("Female"))
-      {
-        pst.setString(8, Gender);
-      }
-      else
-      {
-        throw new Exception("BAD GENDER");
-      }
-
-      if (contact.matches(contactPattern))
-      {
-        pst.setString(9, contact);
-      }
-      else
-      {
-        throw new Exception("BAD CONTACT");
-      }
-
+      pst.setString(2, firstname);
+      pst.setString(3, lastname);
+      pst.setString(4, nic);
+      pst.setString(5, passport);
+      pst.setString(6, address);
+      pst.setString(7, date);
+      pst.setString(8, Gender);
+      pst.setString(9, contact);
       pst.setBytes(10, userimage);
       pst.executeUpdate();
 
@@ -576,8 +501,6 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (Exception e) {
-      e.printStackTrace();
     }
 
 

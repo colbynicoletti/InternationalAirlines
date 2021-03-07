@@ -120,6 +120,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `username`, `password`) VALUES
+('UO005', 'Ben', 'Deleuze', 'ben', 'asd'),
 ('UO001', 'john', 'peter', 'john', '123'),
 ('UO002', 'nimal', 'raja', 'raja', '321'),
 ('UO003', 'Jim', 'Jones', 'jjones', '123'),
