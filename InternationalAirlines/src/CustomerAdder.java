@@ -379,7 +379,6 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
 
   public void autoID() {
     try {
-      Class.forName("com.mysql.jdbc.Driver");
       con = DriverManager
           .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
       Statement s = con.createStatement();
@@ -393,13 +392,9 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
             .parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
         id++;
         txtid.setText("CS" + String.format("%03d", id));
-
-
       }
 
 
-    } catch (ClassNotFoundException ex) {
-      Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -476,7 +471,6 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     String contact = txtcontact.getText();
 
     try {
-      Class.forName("com.mysql.jdbc.Driver");
       con = DriverManager
           .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
       pst = con.prepareStatement(
@@ -497,8 +491,6 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
       JOptionPane.showMessageDialog(null, "Registation Createdd.........");
 
 
-    } catch (ClassNotFoundException ex) {
-      Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -513,8 +505,7 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     this.hide();
   }//GEN-LAST:event_jButton3ActionPerformed
 
-
-  // Variables declaration - do not modify//GEN-BEGIN:variables
+  //<editor-fold desc="SWING Variables Declarations">
   private javax.swing.JButton browseButton;
   private javax.swing.JButton addButton;
   private javax.swing.JButton cancelButton;
@@ -541,5 +532,5 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
   private javax.swing.JTextField txtpassport;
   private javax.swing.JLabel txtphoto;
   private com.toedter.calendar.JDateChooser txtdob;
-  // End of variables declaration//GEN-END:variables
+  //</editor-fold>
 }
