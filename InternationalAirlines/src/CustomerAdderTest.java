@@ -11,28 +11,36 @@ import org.junit.Test;
 
 public class CustomerAdderTest {
 
-    CustomerAdder testCustomerAdder;
-    ActionEvent evt;
+  CustomerAdder testCustomerAdder;
+  ActionEvent evt;
 
-    @Before
-    public void initializeVariables() {
-        testCustomerAdder = new CustomerAdder();
-        evt = new ActionEvent(this, 1, "");
-    }
+  @Before
+  public void initializeVariables() {
+    testCustomerAdder = new CustomerAdder();
+    evt = new ActionEvent(this, 1, "");
+  }
 
-    @Test(expected = Exception.class)
-    public void testInvalidFirstName_ThrowsException() throws Exception {
-        JTextField firstName  = new JTextField("123SUCK");
-        testCustomerAdder.setTxtfirstname(firstName);
+  @Test(expected = Exception.class)
+  public void testInvalidFirstName_ThrowsException() throws Exception {
+    JTextField firstName = new JTextField("123SUCK");
+    testCustomerAdder.setTxtfirstname(firstName);
 
-        testCustomerAdder.jButton2ActionPerformed(evt);
-    }
+    testCustomerAdder.jButton2ActionPerformed(evt);
+  }
 
-    @Test(expected = Exception.class)
-    public void TestInvalidLastName_ThrowsException() throws Exception {
-        JTextField lastName = new JTextField("!@#MY");
-        testCustomerAdder.setTxtlastname(lastName);
+  @Test(expected = Exception.class)
+  public void TestInvalidLastName_ThrowsException() throws Exception {
+    JTextField lastName = new JTextField("!@#MY");
+    testCustomerAdder.setTxtlastname(lastName);
 
-        testCustomerAdder.jButton2ActionPerformed(evt);
-    }
+    testCustomerAdder.jButton2ActionPerformed(evt);
+  }
+
+  @Test(expected = Exception.class)
+  public void TestInvalidNic_ThrowsException() throws Exception {
+    JTextField nic = new JTextField("(*)(*)");
+    testCustomerAdder.setTxtlastname(nic);
+
+    testCustomerAdder.jButton2ActionPerformed(evt);
+  }
 }

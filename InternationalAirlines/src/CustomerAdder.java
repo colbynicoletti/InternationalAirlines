@@ -476,38 +476,45 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
 
     String contact = txtcontact.getText();
 
-    String firstNamePattern = "/[A-Z][a-z]*/";
-    String lastNamePattern = "/[A-Z]+([ '-][a-zA-Z]+)*/";
-    String nicPattern = "/[0-9]{8}/";
-    String passportPattern = "/^(?!^0+$)[a-zA-Z0-9]{6,9}$/";
-    String addressPattern = "/(\\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Rd|Blvd|Ln|St)\\.?)/";
-    String datePattern = "/([12]\\d{3}\\/(0[1-9]|1[0-2])\\/(0[1-9]|[12]\\d|3[01]))/";
-    String contactPattern = "/[0-9]{10}/";
+    String firstNamePattern = "[A-Z][a-z]*";
+    String lastNamePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
+    String nicPattern = "[0-9]{8}";
+    String passportPattern = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
+    String addressPattern = "(\\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Rd|Blvd|Ln|St)\\.?)";
+    String datePattern = "([12]\\d{3}\\/(0[1-9]|1[0-2])\\/(0[1-9]|[12]\\d|3[01]))";
+    String contactPattern = "[0-9]{10}";
 
-    if (!firstname.matches(firstNamePattern))
+    if (!firstname.matches(firstNamePattern)) {
       throw new Exception("BAD FIRSTNAME ->" + firstname);
+    }
 
-    if (!lastname.matches(lastNamePattern))
+    if (!lastname.matches(lastNamePattern)) {
       throw new Exception("BAD LASTNAME ->" + lastname);
+    }
 
-    if (!nic.matches(nicPattern))
+    if (!nic.matches(nicPattern)) {
       throw new Exception("BAD NIC ->" + nic);
+    }
 
-    if (!passport.matches(passportPattern))
+    if (!passport.matches(passportPattern)) {
       throw new Exception("BAD PASSPORT ->" + passport);
+    }
 
-    if (!address.matches(addressPattern))
+    if (!address.matches(addressPattern)) {
       throw new Exception("BAD ADDRESS ->" + address);
+    }
 
-    if (!date.matches(datePattern))
+    if (!date.matches(datePattern)) {
       throw new Exception("BAD DATE ->" + date);
+    }
 
-    if (!contact.matches(contactPattern))
+    if (!contact.matches(contactPattern)) {
       throw new Exception("BAD CONTACT ->" + contact);
+    }
 
-    if (!(gender.equals("Male") || gender.equals("Female")))
+    if (!(gender.equals("Male") || gender.equals("Female"))) {
       throw new Exception("BAD GENDER ->" + gender);
-
+    }
 
     try {
       con = DriverManager
@@ -580,6 +587,7 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
   public void setTxtlastname(JTextField txtlastname) {
     this.txtlastname = txtlastname;
   }
+
   public void setTxtaddress(JTextArea txtaddress) {
     this.txtaddress = txtaddress;
   }
