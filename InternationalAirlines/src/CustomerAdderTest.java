@@ -22,7 +22,7 @@ public class CustomerAdderTest {
 
     @Test(expected = Exception.class)
     public void testInvalidFirstName_ThrowsException() throws Exception {
-        JTextField firstName  = new JTextField("123SUCK");
+        JTextField firstName = new JTextField("123SUCK");
         testCustomerAdder.setTxtfirstname(firstName);
 
         testCustomerAdder.jButton2ActionPerformed(evt);
@@ -32,6 +32,46 @@ public class CustomerAdderTest {
     public void TestInvalidLastName_ThrowsException() throws Exception {
         JTextField lastName = new JTextField("!@#MY");
         testCustomerAdder.setTxtlastname(lastName);
+
+        testCustomerAdder.jButton2ActionPerformed(evt);
+    }
+
+    @Test(expected = Exception.class)
+    public void TestInvalidNic_ThrowsException() throws Exception {
+        JTextField nic = new JTextField("(*)(*)");
+        testCustomerAdder.setTxtlastname(nic);
+
+        testCustomerAdder.jButton2ActionPerformed(evt);
+    }
+
+    @Test(expected = Exception.class)
+    public void TestInvalidPassport_ThrowsException() throws Exception {
+        JTextField passport = new JTextField("APR1234");
+        testCustomerAdder.setTxtlastname(passport);
+
+        testCustomerAdder.jButton2ActionPerformed(evt);
+    }
+
+    @Test(expected = Exception.class)
+    public void TestInvalidAddress_ThrowsException() throws Exception {
+        JTextField address = new JTextField("8008 san carlos");
+        testCustomerAdder.setTxtlastname(address);
+
+        testCustomerAdder.jButton2ActionPerformed(evt);
+    }
+
+    @Test(expected = Exception.class)
+    public void TestInvalidDate_ThrowsException() throws Exception {
+        JTextField date = new JTextField("03/08/2021");
+        testCustomerAdder.setTxtlastname(date);
+
+        testCustomerAdder.jButton2ActionPerformed(evt);
+    }
+
+    @Test(expected = Exception.class)
+    public void TestInvalidContact_ThrowsException() throws Exception {
+        JTextField contact = new JTextField("5555555555");
+        testCustomerAdder.setTxtlastname(contact);
 
         testCustomerAdder.jButton2ActionPerformed(evt);
     }
