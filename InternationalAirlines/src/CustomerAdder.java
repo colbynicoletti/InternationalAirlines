@@ -483,7 +483,7 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     String addressPattern = "/(\\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Rd|Blvd|Ln|St)\\.?)/";
     String datePattern = "/([12]\\d{3}\\/(0[1-9]|1[0-2])\\/(0[1-9]|[12]\\d|3[01]))/";
     String contactPattern = "/[0-9]{10}/";
-//Exception Handling
+
     if (!firstname.matches(firstNamePattern))
       throw new Exception("BAD FIRSTNAME ->" + firstname);
 
