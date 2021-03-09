@@ -3,6 +3,9 @@ package InternationalAirlines.src;
 
 import com.toedter.calendar.JCalendar;
 
+import com.toedter.calendar.JDateChooser;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -280,7 +283,11 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     addButton.setText("Add");
     addButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton2ActionPerformed(evt);
+        try {
+          jButton2ActionPerformed(evt);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
     });
 
@@ -444,11 +451,10 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
 
-
   }//GEN-LAST:event_jButton1ActionPerformed
 
-  private void jButton2ActionPerformed(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+  public void jButton2ActionPerformed(
+      java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
     String id = txtid.getText();
@@ -460,15 +466,48 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
 
     DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
     String date = da.format(txtdob.getDate());
-    String Gender;
+    String gender;
 
     if (maleRadioButton.isSelected()) {
-      Gender = "Male";
+      gender = "Male";
     } else {
-      Gender = "FeMale";
+      gender = "Female";
     }
 
     String contact = txtcontact.getText();
+
+    String firstNamePattern = "/[A-Z][a-z]*/";
+    String lastNamePattern = "/[A-Z]+([ '-][a-zA-Z]+)*/";
+    String nicPattern = "/[0-9]{8}/";
+    String passportPattern = "/^(?!^0+$)[a-zA-Z0-9]{6,9}$/";
+    String addressPattern = "/(\\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Rd|Blvd|Ln|St)\\.?)/";
+    String datePattern = "/([12]\\d{3}\\/(0[1-9]|1[0-2])\\/(0[1-9]|[12]\\d|3[01]))/";
+    String contactPattern = "/[0-9]{10}/";
+
+    if (!firstname.matches(firstNamePattern))
+      throw new Exception("BAD FIRSTNAME ->" + firstname);
+
+    if (!lastname.matches(lastNamePattern))
+      throw new Exception("BAD LASTNAME ->" + lastname);
+
+    if (!nic.matches(nicPattern))
+      throw new Exception("BAD NIC ->" + nic);
+
+    if (!passport.matches(passportPattern))
+      throw new Exception("BAD PASSPORT ->" + passport);
+
+    if (!address.matches(addressPattern))
+      throw new Exception("BAD ADDRESS ->" + address);
+
+    if (!date.matches(datePattern))
+      throw new Exception("BAD DATE ->" + date);
+
+    if (!contact.matches(contactPattern))
+      throw new Exception("BAD CONTACT ->" + contact);
+
+    if (!(gender.equals("Male") || gender.equals("Female")))
+      throw new Exception("BAD GENDER ->" + gender);
+
 
     try {
       con = DriverManager
@@ -483,7 +522,7 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
       pst.setString(5, passport);
       pst.setString(6, address);
       pst.setString(7, date);
-      pst.setString(8, Gender);
+      pst.setString(8, gender);
       pst.setString(9, contact);
       pst.setBytes(10, userimage);
       pst.executeUpdate();
@@ -533,4 +572,31 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
   private javax.swing.JLabel txtphoto;
   private com.toedter.calendar.JDateChooser txtdob;
   //</editor-fold>
+
+  public void setTxtfirstname(JTextField txtfirstname) {
+    this.txtfirstname = txtfirstname;
+  }
+
+  public void setTxtlastname(JTextField txtlastname) {
+    this.txtlastname = txtlastname;
+  }
+  public void setTxtaddress(JTextArea txtaddress) {
+    this.txtaddress = txtaddress;
+  }
+
+  public void setTxtcontact(JTextField txtcontact) {
+    this.txtcontact = txtcontact;
+  }
+
+  public void setTxtnic(JTextField txtnic) {
+    this.txtnic = txtnic;
+  }
+
+  public void setTxtpassport(JTextField txtpassport) {
+    this.txtpassport = txtpassport;
+  }
+
+  public void setTxtdob(JDateChooser txtdob) {
+    this.txtdob = txtdob;
+  }
 }
