@@ -481,7 +481,7 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     String nicPattern = "[0-9]{8}";
     String passportPattern = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
     String addressPattern = "(\\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Rd|Blvd|Ln|St)\\.?)";
-    String datePattern = "([12]\\d{3}\\/(0[1-9]|1[0-2])\\/(0[1-9]|[12]\\d|3[01]))";
+    //String datePattern = "([12]\\d{3}\\/(0[1-9]|1[0-2])\\/(0[1-9]|[12]\\d|3[01]))";
     String contactPattern = "[0-9]{10}";
 
     if (!firstname.matches(firstNamePattern)) {
@@ -504,9 +504,12 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
       throw new Exception("BAD ADDRESS ->" + address);
     }
 
-    if (!date.matches(datePattern)) {
+    if (date == null) {
       throw new Exception("BAD DATE ->" + date);
     }
+//    if (!date.matches(datePattern)) {
+//      throw new Exception("BAD DATE ->" + date);
+//    }
 
     if (!contact.matches(contactPattern)) {
       throw new Exception("BAD CONTACT ->" + contact);
