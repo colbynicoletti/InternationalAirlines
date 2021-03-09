@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import org.junit.Before;
 import org.junit.Test;
-
+// Testing
 public class CustomerAdderTest {
 
     CustomerAdder testCustomerAdder;
