@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="res">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/InternationalAirlines/res/jgoodies-looks-2.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/InternationalAirlines/res/jcalendar-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/InternationalAirlines/res/jgoodies-common-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/InternationalAirlines/res/junit-4.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/InternationalAirlines/res/mysql-connector-java-8.0.23.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
