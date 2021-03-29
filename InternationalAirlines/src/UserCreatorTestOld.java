@@ -3,15 +3,14 @@ package InternationalAirlines.src;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
-public class UserCreatorTest {
+public class UserCreatorTestOld {
 
   UserCreator userCreator;
   ActionEvent evt;
 
-  @Before
+  //@BeforeAll
   public void initializeVariables() {
     userCreator = new UserCreator();
     evt = new ActionEvent(this, 1, "");
@@ -27,7 +26,7 @@ public class UserCreatorTest {
     userCreator.setTextPassword(password);
   }
 
-  @Test(expected = Exception.class)
+  //@Test//(expected = Exception.class)
   public void testInvalidFirstName_ThrowsException() throws Exception {
     JTextField firstName = new JTextField("12LK");
     userCreator.setTextFirstName(firstName);
@@ -35,7 +34,7 @@ public class UserCreatorTest {
     userCreator.jButton1ActionPerformed(evt);
   }
 
-  @Test(expected = Exception.class)
+  //@Test//(expected = Exception.class)
   public void testInvalidLastName_ThrowsException() throws Exception {
     JTextField lastName = new JTextField("Kl3M 4");
     userCreator.setTextLastName(lastName);
@@ -43,7 +42,7 @@ public class UserCreatorTest {
     userCreator.jButton1ActionPerformed(evt);
   }
 
-  @Test(expected = Exception.class)
+  //@Test//(expected = Exception.class)
   public void testInvalidUsername_ThrowsException() throws Exception {
     JTextField username = new JTextField("NOt !rtgf.");
     userCreator.setTextUsername(username);
@@ -51,7 +50,7 @@ public class UserCreatorTest {
     userCreator.jButton1ActionPerformed(evt);
   }
 
-  @Test(expected = Exception.class)
+  //@Test//(expected = Exception.class)
   public void testInvalidPassword_ThrowsException() throws Exception {
     JPasswordField password = new JPasswordField("password");
     userCreator.setTextPassword(password);
