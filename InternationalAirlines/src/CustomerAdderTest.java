@@ -97,7 +97,6 @@ public class CustomerAdderTest {
 
 //  @Test
 //  public void testAllValid_NoExceptionThrown() throws Exception {
-//
 //    assertThrows(Exception.class, () -> testCustomerAdder.jButton2ActionPerformed(evt));
 //  }
 }
