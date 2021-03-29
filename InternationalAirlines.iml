@@ -42,16 +42,39 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-4.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/mysql-connector-java-8.0.23.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library" exported="" scope="TEST">
+      <library name="JUnit5.4">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-jupiter-5.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-jupiter-api-5.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/apiguardian-api-1.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/opentest4j-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-platform-commons-1.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-jupiter-params-5.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-jupiter-engine-5.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-platform-engine-1.4.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/mysql-connector-java-8.0.23.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-jupiter-5.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-jupiter-api-5.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/apiguardian-api-1.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/opentest4j-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-platform-commons-1.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-jupiter-params-5.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-jupiter-engine-5.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/InternationalAirlines/res/junit-platform-engine-1.4.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -1,78 +1,103 @@
 package InternationalAirlines.src;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionEvent;
+import java.util.Date;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 public class CustomerAdderTest {
 
-    CustomerAdder testCustomerAdder;
-    ActionEvent evt;
+  private static CustomerAdder testCustomerAdder;
+  private static ActionEvent evt;
 
-    @Before
-    public void initializeVariables() {
-        testCustomerAdder = new CustomerAdder();
-        evt = new ActionEvent(this, 1, "");
-    }
+  @BeforeAll
+  public static void initializeVariables() {
+    testCustomerAdder = new CustomerAdder();
+    evt = new ActionEvent(testCustomerAdder, 1, "");
 
-    @Test(expected = Exception.class)
-    public void testInvalidFirstName_ThrowsException() throws Exception {
-        JTextField firstName = new JTextField("123SUCK");
-        testCustomerAdder.setTxtfirstname(firstName);
+    //set valid input
+    JTextField firstName = new JTextField("Ben");
+    JTextField lastName = new JTextField("Deleuze");
+    JTextField nic = new JTextField("12345678");
+    JTextField passport = new JTextField("A2096457");
+    JTextArea address = new JTextArea("1 Liberty St");
+    Date dDate = new Date(System.currentTimeMillis());
+    JDateChooser date = new JDateChooser(dDate);
+    JTextField contact = new JTextField("9549376477");
+    testCustomerAdder.setTxtfirstname(firstName);
+    testCustomerAdder.setTxtlastname(lastName);
+    testCustomerAdder.setTxtnic(nic);
+    testCustomerAdder.setTxtpassport(passport);
+    testCustomerAdder.setTxtaddress(address);
+    testCustomerAdder.setTxtdob(date);
+    testCustomerAdder.setTxtcontact(contact);
+  }
 
-        testCustomerAdder.jButton2ActionPerformed(evt);
-    }
+  @Test
+  public void testInvalidFirstName_ThrowsException() {
+    JTextField firstName = new JTextField("123SUCK");
+    testCustomerAdder.setTxtfirstname(firstName);
 
-    @Test(expected = Exception.class)
-    public void TestInvalidLastName_ThrowsException() throws Exception {
-        JTextField lastName = new JTextField("!@#MY");
-        testCustomerAdder.setTxtlastname(lastName);
+    assertThrows(Exception.class, () -> testCustomerAdder.jButton2ActionPerformed(evt));
+  }
 
-        testCustomerAdder.jButton2ActionPerformed(evt);
-    }
+  @Test
+  public void TestInvalidLastName_ThrowsException() {
+    JTextField lastName = new JTextField("!@#MY");
+    testCustomerAdder.setTxtlastname(lastName);
 
-    @Test(expected = Exception.class)
-    public void TestInvalidNic_ThrowsException() throws Exception {
-        JTextField nic = new JTextField("(*)(*)");
-        testCustomerAdder.setTxtlastname(nic);
+    assertThrows(Exception.class, () -> testCustomerAdder.jButton2ActionPerformed(evt));
+  }
 
-        testCustomerAdder.jButton2ActionPerformed(evt);
-    }
+  @Test
+  public void TestInvalidNic_ThrowsException() {
+    JTextField nic = new JTextField("(*)(*)");
+    testCustomerAdder.setTxtnic(nic);
 
-    @Test(expected = Exception.class)
-    public void TestInvalidPassport_ThrowsException() throws Exception {
-        JTextField passport = new JTextField("APR1234");
-        testCustomerAdder.setTxtlastname(passport);
+    assertThrows(Exception.class, () -> testCustomerAdder.jButton2ActionPerformed(evt));
+  }
 
-        testCustomerAdder.jButton2ActionPerformed(evt);
-    }
+  @Test
+  public void TestInvalidPassport_ThrowsException() {
+    JTextField passport = new JTextField("APR1234");
+    testCustomerAdder.setTxtpassport(passport);
 
-    @Test(expected = Exception.class)
-    public void TestInvalidAddress_ThrowsException() throws Exception {
-        JTextField address = new JTextField("8008 san carlos");
-        testCustomerAdder.setTxtlastname(address);
+    assertThrows(Exception.class, () -> testCustomerAdder.jButton2ActionPerformed(evt));
+  }
 
-        testCustomerAdder.jButton2ActionPerformed(evt);
-    }
+  @Test
+  public void TestInvalidAddress_ThrowsException() {
+    JTextArea address = new JTextArea("8008 san carlos");
+    testCustomerAdder.setTxtaddress(address);
 
-    @Test(expected = Exception.class)
-    public void TestInvalidDate_ThrowsException() throws Exception {
-        JTextField date = new JTextField("03/08/2021");
-        testCustomerAdder.setTxtlastname(date);
+    assertThrows(Exception.class, () -> testCustomerAdder.jButton2ActionPerformed(evt));
+  }
 
-        testCustomerAdder.jButton2ActionPerformed(evt);
-    }
+  @Test
+  public void TestInvalidDate_ThrowsException() {
+    String strDate = "";
+    Date dDate = new Date();
+    JDateChooser date = new JDateChooser(dDate, strDate);
+    testCustomerAdder.setTxtdob(date);
 
-    @Test(expected = Exception.class)
-    public void TestInvalidContact_ThrowsException() throws Exception {
-        JTextField contact = new JTextField("5555555555");
-        testCustomerAdder.setTxtlastname(contact);
+    assertThrows(Exception.class, () -> testCustomerAdder.jButton2ActionPerformed(evt));
+  }
 
-        testCustomerAdder.jButton2ActionPerformed(evt);
-    }
+  @Test
+  public void TestInvalidContact_ThrowsException() {
+    JTextField contact = new JTextField("12345678901234");
+    testCustomerAdder.setTxtcontact(contact);
+
+    assertThrows(Exception.class, () -> testCustomerAdder.jButton2ActionPerformed(evt));
+  }
+
+//  @Test
+//  public void testAllValid_NoExceptionThrown() throws Exception {
+//
+//    assertThrows(Exception.class, () -> testCustomerAdder.jButton2ActionPerformed(evt));
+//  }
 }

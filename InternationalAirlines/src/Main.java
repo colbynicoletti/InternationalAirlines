@@ -1,7 +1,5 @@
 package InternationalAirlines.src;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -156,13 +154,12 @@ public class Main extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void addCustomerAction(
-      ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
     // TODO add your handling code here:
 
     CustomerAdder cus = new CustomerAdder();
     jDesktopPane1.add(cus);
     cus.setVisible(true);
-
   }//GEN-LAST:event_jMenuItem1ActionPerformed
 
   private void searchCustomerAction(

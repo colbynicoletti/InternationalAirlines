@@ -70,7 +70,11 @@ public class UserCreator extends javax.swing.JInternalFrame {
     jButton1.setText("Add");
     jButton1.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+        try {
+          jButton1ActionPerformed(evt);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
     });
 
@@ -186,8 +190,8 @@ public class UserCreator extends javax.swing.JInternalFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jButton1ActionPerformed(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  public void jButton1ActionPerformed(
+      java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
     String id = textUserId.getText();
@@ -195,6 +199,27 @@ public class UserCreator extends javax.swing.JInternalFrame {
     String lastname = textLastName.getText();
     String username = textUsername.getText();
     String password = textPassword.getText();
+
+    String firstNamePattern = "[A-Z][a-z]*";
+    String lastNamePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
+    String usernamePattern = "^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$";
+    String passwordPattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+
+    if (!firstname.matches(firstNamePattern)) {
+      throw new Exception("BAD FIRSTNAME ->" + firstname);
+    }
+
+    if (!lastname.matches(lastNamePattern)) {
+      throw new Exception("BAD LASTNAME ->" + lastname);
+    }
+
+    if (!username.matches(usernamePattern)) {
+      throw new Exception("BAD USERNAME ->" + username);
+    }
+
+    if (!password.matches(passwordPattern)) {
+      throw new Exception("BAD PASSWORD ->" + password);
+    }
 
     try {
       con = DriverManager
@@ -258,4 +283,21 @@ public class UserCreator extends javax.swing.JInternalFrame {
   private javax.swing.JLabel textUserId;
   private javax.swing.JTextField textUsername;
   //</editor-fold>
+
+  //setters for test class
+  public void setTextFirstName(JTextField textFirstName) {
+    this.textFirstName = textFirstName;
+  }
+
+  public void setTextLastName(JTextField textLastName) {
+    this.textLastName = textLastName;
+  }
+
+  public void setTextUsername(JTextField textUsername) {
+    this.textUsername = textUsername;
+  }
+
+  public void setTextPassword(JPasswordField textPassword) {
+    this.textPassword = textPassword;
+  }
 }
