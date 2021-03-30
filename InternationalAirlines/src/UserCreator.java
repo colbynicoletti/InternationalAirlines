@@ -191,8 +191,7 @@ public class UserCreator extends javax.swing.JInternalFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   public void jButton1ActionPerformed(
-      java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton1ActionPerformed
-    // TODO add your handling code here:
+      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     String id = textUserId.getText();
     String firstname = textFirstName.getText();
@@ -200,6 +199,37 @@ public class UserCreator extends javax.swing.JInternalFrame {
     String username = textUsername.getText();
     String password = textPassword.getText();
 
+    boolean validInput = true;
+    try {
+      testInputForNewUser(firstname, lastname, username, password);
+    } catch (Exception e) {
+      validInput = false;
+    }
+    if (validInput) {
+      try {
+        con = DriverManager
+            .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
+        pst = con.prepareStatement(
+            "insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
+
+        pst.setString(1, id);
+        pst.setString(2, firstname);
+        pst.setString(3, lastname);
+        pst.setString(4, username);
+        pst.setString(5, password);
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(null, "User Createdd.........");
+      } catch (SQLException ex) {
+        Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    } else {
+      JOptionPane.showMessageDialog(null, "Invalid Inputs");
+    }
+  }//GEN-LAST:event_jButton1ActionPerformed
+
+  public void testInputForNewUser(String firstname, String lastname,
+      String username, String password) throws Exception {
     String firstNamePattern = "[A-Z][a-z]*";
     String lastNamePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
     String usernamePattern = "^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$";
@@ -220,25 +250,7 @@ public class UserCreator extends javax.swing.JInternalFrame {
     if (!password.matches(passwordPattern)) {
       throw new Exception("BAD PASSWORD ->" + password);
     }
-
-    try {
-      con = DriverManager
-          .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
-      pst = con.prepareStatement(
-          "insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
-
-      pst.setString(1, id);
-      pst.setString(2, firstname);
-      pst.setString(3, lastname);
-      pst.setString(4, username);
-      pst.setString(5, password);
-      pst.executeUpdate();
-
-      JOptionPane.showMessageDialog(null, "User Createdd.........");
-    } catch (SQLException ex) {
-      Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
-    }
-  }//GEN-LAST:event_jButton1ActionPerformed
+  }
 
   private void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -283,21 +295,4 @@ public class UserCreator extends javax.swing.JInternalFrame {
   private javax.swing.JLabel textUserId;
   private javax.swing.JTextField textUsername;
   //</editor-fold>
-
-  //setters for test class
-  public void setTextFirstName(JTextField textFirstName) {
-    this.textFirstName = textFirstName;
-  }
-
-  public void setTextLastName(JTextField textLastName) {
-    this.textLastName = textLastName;
-  }
-
-  public void setTextUsername(JTextField textUsername) {
-    this.textUsername = textUsername;
-  }
-
-  public void setTextPassword(JPasswordField textPassword) {
-    this.textPassword = textPassword;
-  }
 }

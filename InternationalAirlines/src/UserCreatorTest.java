@@ -2,62 +2,53 @@ package InternationalAirlines.src;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import org.junit.jupiter.api.*;
 
 class UserCreatorTest {
 
   private static UserCreator testUserCreator;
-  private static ActionEvent evt;
+  private static String firstName;
+  private static String lastName;
+  private static String username;
+  private static String password;
 
   @BeforeAll
   public static void initializeVariables() {
     testUserCreator = new UserCreator();
-    evt = new ActionEvent(testUserCreator, 1, "");
 
     //set valid input
-    JTextField firstName = new JTextField("Ben");
-    JTextField lastName = new JTextField("Deleuze");
-    JTextField username = new JTextField("Ben.Deleuze");
-    JPasswordField password = new JPasswordField("Examp1eP@ssword");
-    testUserCreator.setTextFirstName(firstName);
-    testUserCreator.setTextLastName(lastName);
-    testUserCreator.setTextUsername(username);
-    testUserCreator.setTextPassword(password);
+    firstName = "Ben";
+    lastName = "Deleuze";
+    username = "Ben.Deleuze";
+    password = "Examp1eP@ssword";
   }
 
   @Test
   public void testInvalidFirstName_ThrowsException() {
-    JTextField firstName = new JTextField("12LK");
-    testUserCreator.setTextFirstName(firstName);
+    firstName = "12LK";
 
-    assertThrows(Exception.class, () -> testUserCreator.jButton1ActionPerformed(evt));
+    assertThrows(Exception.class, () -> testUserCreator.testInputForNewUser(firstName, lastName, username, password));
   }
 
   @Test
   public void testInvalidLastName_ThrowsException() {
-    JTextField lastName = new JTextField("Kl3M 4");
-    testUserCreator.setTextLastName(lastName);
+    lastName = "Kl3M 4";
 
-    assertThrows(Exception.class, () -> testUserCreator.jButton1ActionPerformed(evt));
+    assertThrows(Exception.class, () -> testUserCreator.testInputForNewUser(firstName, lastName, username, password));
   }
 
   @Test
   public void testInvalidUsername_ThrowsException() {
-    JTextField username = new JTextField("NOt !rtgf.");
-    testUserCreator.setTextUsername(username);
+    username = "NOt !rtgf.";
 
-    assertThrows(Exception.class, () -> testUserCreator.jButton1ActionPerformed(evt));
+    assertThrows(Exception.class, () -> testUserCreator.testInputForNewUser(firstName, lastName, username, password));
   }
 
   @Test
   public void testInvalidPassword_ThrowsException() {
-    JPasswordField password = new JPasswordField("password");
-    testUserCreator.setTextPassword(password);
+    password = "password";
 
-    assertThrows(Exception.class, () -> testUserCreator.jButton1ActionPerformed(evt));
+    assertThrows(Exception.class, () -> testUserCreator.testInputForNewUser(firstName, lastName, username, password));
   }
 //  @Test
 //  public void testAllValid_NoExceptionThrown() {
