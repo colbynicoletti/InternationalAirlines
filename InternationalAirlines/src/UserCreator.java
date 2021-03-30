@@ -219,12 +219,12 @@ public class UserCreator extends javax.swing.JInternalFrame {
         pst.setString(5, password);
         pst.executeUpdate();
 
-        JOptionPane.showMessageDialog(null, "User Createdd.........");
+        JOptionPane.showMessageDialog(null, "User Created.........");
       } catch (SQLException ex) {
         Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
       }
     } else {
-      JOptionPane.showMessageDialog(null, "Invalid Inputs");
+      JOptionPane.showMessageDialog(null, "<html><div color=red>Invalid Inputs", "Error", JOptionPane.ERROR_MESSAGE);
     }
   }//GEN-LAST:event_jButton1ActionPerformed
 

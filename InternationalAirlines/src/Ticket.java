@@ -603,7 +603,7 @@ public class Ticket extends javax.swing.JInternalFrame {
     try {
       textTotal.setText(String.valueOf(calculateCost(price, qty)));
     } catch (Exception e) {
-      JOptionPane.showMessageDialog(this, "Price or Seats <= 0");
+      JOptionPane.showMessageDialog(this, "<html><div color=red>Price or Seats Invalid", "Error", JOptionPane.ERROR_MESSAGE);
     }
   }//GEN-LAST:event_txtseatsStateChanged
 

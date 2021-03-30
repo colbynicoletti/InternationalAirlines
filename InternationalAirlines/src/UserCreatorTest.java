@@ -57,6 +57,7 @@ class UserCreatorTest {
 
   @Test
   public void testAllValid_NoExceptionThrown() {
-    assertDoesNotThrow(() -> testUserCreator.testInputForNewUser(firstName, lastName, username, password));
+    assertDoesNotThrow(
+        () -> testUserCreator.testInputForNewUser(firstName, lastName, username, password));
   }
 }
