@@ -283,7 +283,11 @@ public class Ticket extends javax.swing.JInternalFrame {
 
     textSeats.addChangeListener(new javax.swing.event.ChangeListener() {
       public void stateChanged(javax.swing.event.ChangeEvent evt) {
-        textSeatChangedAction(evt);
+        try {
+          textSeatChangedAction(evt);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
     });
 
@@ -593,13 +597,28 @@ public class Ticket extends javax.swing.JInternalFrame {
 
   private void textSeatChangedAction(
       javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtseatsStateChanged
-    // TODO add your handling code here:
 
     int price = Integer.parseInt(textPrice.getText());
     int qty = Integer.parseInt(textSeats.getValue().toString());
-    int tot = price * qty;
-    textTotal.setText(String.valueOf(tot));
+    try {
+      textTotal.setText(String.valueOf(calculateCost(price, qty)));
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(this, "Price or Seats <= 0");
+    }
   }//GEN-LAST:event_txtseatsStateChanged
+
+  //handling for textSeatChangedAction
+  public int calculateCost(int price, int quantity) throws Exception {
+    int total;
+    if (price <= 0) {
+      throw new Exception("PRICE <= 0 -> " + price);
+    }
+    if (quantity < 0) {
+      throw new Exception("QUANTITY < 0 ->" + quantity);
+    }
+    total = price * quantity;
+    return total;
+  }
 
   private void submitButtonAction(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -629,7 +648,7 @@ public class Ticket extends javax.swing.JInternalFrame {
       pst.setString(7, date);
       pst.executeUpdate();
 
-      JOptionPane.showMessageDialog(null, "Ticket Bookeed.........");
+      JOptionPane.showMessageDialog(null, "Ticket Booked.........");
     } catch (SQLException ex) {
       Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
