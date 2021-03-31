@@ -1,6 +1,7 @@
 package InternationalAirlines.src;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -141,11 +142,12 @@ public class Login extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void jButton1ActionPerformed(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      ActionEvent evt)  {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
     String username = textUser.getText();
     String password = textPass.getText();
+
 
     if (username.isEmpty() || password.isEmpty()) {
       JOptionPane.showMessageDialog(this, "UserName or Password Blank");

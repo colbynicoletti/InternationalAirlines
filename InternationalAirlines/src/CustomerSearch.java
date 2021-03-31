@@ -277,7 +277,11 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
     jButton2.setText("Update");
     jButton2.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton2ActionPerformed(evt);
+        try {
+          jButton2ActionPerformed(evt);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
     });
 
@@ -395,8 +399,8 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_txtpassportActionPerformed
 
-  private void jButton1ActionPerformed(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  void jButton1ActionPerformed(
+          java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
     try {
@@ -429,9 +433,8 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
   }//GEN-LAST:event_jButton1ActionPerformed
 
   private void jButton2ActionPerformed(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
-
     String id = txtcustid.getText();
     String firstname = txtfirstname.getText();
     String lastname = txtlastname.getText();
@@ -443,6 +446,36 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
 
     String date = da.format(txtdob.getDate());
     String Gender;
+
+    //REGEX Pattern - not finished
+    String firstNamePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
+    String lastNamePattern = "";
+    String nicPattern = "";
+    String passportPattern = "";
+    String addressPattern = "^([01]\\d|2[0-3]):?([0-5]\\d)$";
+    //String datePattern = "([12]\\d{3}\\/(0[1-9]|1[0-2])\\/(0[1-9]|[12]\\d|3[01]))";
+
+    //Exception Handles
+    if (!firstname.matches(firstNamePattern)) {
+      throw new Exception("BAD FIRSTNAME ->" + firstname);
+    }
+
+    if (!lastname.matches(lastNamePattern)) {
+      throw new Exception("BAD LASTNAME ->" + lastname);
+    }
+
+    if (!nic.matches(nicPattern)) {
+      throw new Exception("BAD NIC ->" + nic);
+    }
+
+    if (!passport.matches(passportPattern)) {
+      throw new Exception("BAD PASSPORT ->" + passport);
+    }
+
+    if (!address.matches(addressPattern)) {
+      throw new Exception("BAD ADDRESS ->" + address);
+    }
+
 
     if (r1.isSelected()) {
       Gender = "Male";
@@ -579,4 +612,23 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
   private javax.swing.JLabel txtphoto;
   private com.toedter.calendar.JDateChooser txtdob;
   //</editor-fold>
+
+  public void setTxtfirstName(JTextField txtfirstname) {
+    this.txtfirstname = txtfirstname;
+  }
+
+  public void setTxtlastName(JTextField txtlastname) {
+    this.txtlastname = txtlastname;
+  }
+
+  public void setTxtNic(JTextField txtnic) {
+    this.txtnic = txtnic;
+  }
+
+  public void setTxtPassport(JTextField txtPassport) { this.txtpassport = txtpassport; }
+
+  public void setTxtAddress(JTextField txtAddress) {
+    this.txtaddress = txtaddress;
+  }
+
 }
