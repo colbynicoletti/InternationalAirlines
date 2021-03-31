@@ -1,11 +1,5 @@
 package InternationalAirlines.src;
 
-
-import com.toedter.calendar.JCalendar;
-
-import com.toedter.calendar.JDateChooser;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -21,16 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-
 public class CustomerAdder extends javax.swing.JInternalFrame {
-
 
   /**
    * Creates new form addCustomer
@@ -383,7 +374,6 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-
   public void autoID() {
     try {
       con = DriverManager
@@ -400,15 +390,10 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
         id++;
         txtid.setText("CS" + String.format("%03d", id));
       }
-
-
     } catch (SQLException ex) {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
-
-
   }
-
 
   private void txtlastnameActionPerformed(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtlastnameActionPerformed
@@ -445,17 +430,13 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
         baos.write(buff, 0, readNum);
       }
       userimage = baos.toByteArray();
-
-
     } catch (IOException ex) {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
-
   }//GEN-LAST:event_jButton1ActionPerformed
 
   public void jButton2ActionPerformed(
-      java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton2ActionPerformed
-    // TODO add your handling code here:
+      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
     String id = txtid.getText();
     String firstname = txtfirstname.getText();
@@ -463,89 +444,92 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     String nic = txtnic.getText();
     String passport = txtpassport.getText();
     String address = txtaddress.getText();
-
     DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
     String date = da.format(txtdob.getDate());
     String gender;
-
     if (maleRadioButton.isSelected()) {
       gender = "Male";
     } else {
       gender = "Female";
     }
-
     String contact = txtcontact.getText();
 
+    //Input handling
+    boolean validInput = true;
+    try {
+      testInputForNewCustomer(firstname, lastname, nic, passport, address, date, contact, gender);
+    } catch (Exception e) {
+      validInput = false;
+    }
+
+    if (validInput) {
+      try {
+        con = DriverManager
+            .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
+        pst = con.prepareStatement(
+            "insert into customer(id,firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
+
+        pst.setString(1, id);
+        pst.setString(2, firstname);
+        pst.setString(3, lastname);
+        pst.setString(4, nic);
+        pst.setString(5, passport);
+        pst.setString(6, address);
+        pst.setString(7, date);
+        pst.setString(8, gender);
+        pst.setString(9, contact);
+        pst.setBytes(10, userimage);
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(null, "Registration Created.........");
+      } catch (SQLException ex) {
+        Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    } else {
+      JOptionPane.showMessageDialog(null, "<html><div color=red>Invalid Inputs", "Error",
+          JOptionPane.ERROR_MESSAGE);
+    }
+  }//GEN-LAST:event_jButton2ActionPerformed
+
+  public void testInputForNewCustomer(String firstname, String lastname, String nic,
+      String passport, String address, String date, String contact, String gender)
+      throws Exception {
     String firstNamePattern = "[A-Z][a-z]*";
     String lastNamePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
     String nicPattern = "[0-9]{8}";
     String passportPattern = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
     String addressPattern = "(\\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Rd|Blvd|Ln|St)\\.?)";
-    //String datePattern = "([12]\\d{3}\\/(0[1-9]|1[0-2])\\/(0[1-9]|[12]\\d|3[01]))";
+    String datePattern = "(^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$)";
     String contactPattern = "[0-9]{10}";
 
     if (!firstname.matches(firstNamePattern)) {
       throw new Exception("BAD FIRSTNAME ->" + firstname);
     }
-
     if (!lastname.matches(lastNamePattern)) {
       throw new Exception("BAD LASTNAME ->" + lastname);
     }
-
     if (!nic.matches(nicPattern)) {
       throw new Exception("BAD NIC ->" + nic);
     }
-
     if (!passport.matches(passportPattern)) {
       throw new Exception("BAD PASSPORT ->" + passport);
     }
-
     if (!address.matches(addressPattern)) {
       throw new Exception("BAD ADDRESS ->" + address);
     }
-
     if (date == null) {
       throw new Exception("BAD DATE ->" + date);
     }
-//    if (!date.matches(datePattern)) {
-//      throw new Exception("BAD DATE ->" + date);
-//    }
-
+    if (!date.matches(datePattern)) {
+      throw new Exception("BAD DATE ->" + date);
+    }
     if (!contact.matches(contactPattern)) {
       throw new Exception("BAD CONTACT ->" + contact);
     }
-
     if (!(gender.equals("Male") || gender.equals("Female"))) {
       throw new Exception("BAD GENDER ->" + gender);
     }
-
-    try {
-      con = DriverManager
-          .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
-      pst = con.prepareStatement(
-          "insert into customer(id,firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
-
-      pst.setString(1, id);
-      pst.setString(2, firstname);
-      pst.setString(3, lastname);
-      pst.setString(4, nic);
-      pst.setString(5, passport);
-      pst.setString(6, address);
-      pst.setString(7, date);
-      pst.setString(8, gender);
-      pst.setString(9, contact);
-      pst.setBytes(10, userimage);
-      pst.executeUpdate();
-
-      JOptionPane.showMessageDialog(null, "Registation Createdd.........");
-
-
-    } catch (SQLException ex) {
-      Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
-    }
-
-
-  }//GEN-LAST:event_jButton2ActionPerformed
+  }
 
   private void jButton3ActionPerformed(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -583,31 +567,4 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
   private com.toedter.calendar.JDateChooser txtdob;
   //</editor-fold>
 
-  public void setTxtfirstname(JTextField txtfirstname) {
-    this.txtfirstname = txtfirstname;
-  }
-
-  public void setTxtlastname(JTextField txtlastname) {
-    this.txtlastname = txtlastname;
-  }
-
-  public void setTxtaddress(JTextArea txtaddress) {
-    this.txtaddress = txtaddress;
-  }
-
-  public void setTxtcontact(JTextField txtcontact) {
-    this.txtcontact = txtcontact;
-  }
-
-  public void setTxtnic(JTextField txtnic) {
-    this.txtnic = txtnic;
-  }
-
-  public void setTxtpassport(JTextField txtpassport) {
-    this.txtpassport = txtpassport;
-  }
-
-  public void setTxtdob(JDateChooser txtdob) {
-    this.txtdob = txtdob;
-  }
 }

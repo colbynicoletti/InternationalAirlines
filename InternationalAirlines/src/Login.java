@@ -166,7 +166,7 @@ public class Login extends javax.swing.JFrame {
           this.hide();
           m.setVisible(true);
         } else {
-          JOptionPane.showMessageDialog(this, "UserName or Password do not Match");
+          JOptionPane.showMessageDialog(this, "UserName or Password do not match");
           textUser.setText("");
           textPass.setText("");
           textUser.requestFocus();

@@ -26,7 +26,6 @@ class UserCreatorTest {
   @Test
   public void testInvalidFirstName_ThrowsException() {
     firstName = "12LK";
-
     assertThrows(Exception.class,
         () -> testUserCreator.testInputForNewUser(firstName, lastName, username, password));
   }
@@ -34,7 +33,6 @@ class UserCreatorTest {
   @Test
   public void testInvalidLastName_ThrowsException() {
     lastName = "Kl3M 4";
-
     assertThrows(Exception.class,
         () -> testUserCreator.testInputForNewUser(firstName, lastName, username, password));
   }
@@ -42,7 +40,6 @@ class UserCreatorTest {
   @Test
   public void testInvalidUsername_ThrowsException() {
     username = "NOt !rtgf.";
-
     assertThrows(Exception.class,
         () -> testUserCreator.testInputForNewUser(firstName, lastName, username, password));
   }
@@ -50,7 +47,6 @@ class UserCreatorTest {
   @Test
   public void testInvalidPassword_ThrowsException() {
     password = "password";
-
     assertThrows(Exception.class,
         () -> testUserCreator.testInputForNewUser(firstName, lastName, username, password));
   }

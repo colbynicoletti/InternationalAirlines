@@ -2,19 +2,16 @@ package InternationalAirlines.src;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.event.ActionEvent;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class TicketTest {
 
   private static Ticket testTicket;
-  //private static ActionEvent evt;
 
   @BeforeAll
   public static void initializeVariables() {
     testTicket = new Ticket();
-    //evt = new ActionEvent(testTicket, 1, "");
   }
 
   @Test

@@ -224,7 +224,8 @@ public class UserCreator extends javax.swing.JInternalFrame {
         Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
       }
     } else {
-      JOptionPane.showMessageDialog(null, "<html><div color=red>Invalid Inputs", "Error", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(null, "<html><div color=red>Invalid Inputs", "Error",
+          JOptionPane.ERROR_MESSAGE);
     }
   }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -238,15 +239,12 @@ public class UserCreator extends javax.swing.JInternalFrame {
     if (!firstname.matches(firstNamePattern)) {
       throw new Exception("BAD FIRSTNAME ->" + firstname);
     }
-
     if (!lastname.matches(lastNamePattern)) {
       throw new Exception("BAD LASTNAME ->" + lastname);
     }
-
     if (!username.matches(usernamePattern)) {
       throw new Exception("BAD USERNAME ->" + username);
     }
-
     if (!password.matches(passwordPattern)) {
       throw new Exception("BAD PASSWORD ->" + password);
     }
@@ -278,8 +276,7 @@ public class UserCreator extends javax.swing.JInternalFrame {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
-
-
+  
   //<editor-fold desc="SWING Variables Declarations">
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
