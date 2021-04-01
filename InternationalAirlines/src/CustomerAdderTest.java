@@ -9,21 +9,18 @@ import org.junit.jupiter.api.*;
 
 public class CustomerAdderTest {
 
-  private static CustomerAdder testCustomerAdder;
-  private static String firstName;
-  private static String lastName;
-  private static String nic;
-  private static String passport;
-  private static String address;
-  private static String date;
-  private static String contact;
-  private static String gender;
+  private CustomerAdder testCustomerAdder = new CustomerAdder();
+  private String firstName;
+  private String lastName;
+  private String nic;
+  private String passport;
+  private String address;
+  private String date;
+  private String contact;
+  private String gender;
 
-  @BeforeAll
-  public static void initializeVariables() {
-    testCustomerAdder = new CustomerAdder();
-
-    //set valid input
+  @BeforeEach
+  public void setValidInput() {
     firstName = "Ben";
     lastName = "Deleuze";
     nic = "12345678";

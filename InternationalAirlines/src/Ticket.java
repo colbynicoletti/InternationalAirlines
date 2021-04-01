@@ -17,7 +17,6 @@ import java.util.logging.Logger;
  * and open the template in the editor.
  */
 
-
 public class Ticket extends javax.swing.JInternalFrame {
 
   /**
@@ -531,7 +530,6 @@ public class Ticket extends javax.swing.JInternalFrame {
     }
   }//GEN-LAST:event_jButton3ActionPerformed
 
-
   public void autoID() {
     try {
       con = DriverManager
@@ -552,7 +550,6 @@ public class Ticket extends javax.swing.JInternalFrame {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
-
 
   private void submitPassportInfotoDBAction(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -603,7 +600,8 @@ public class Ticket extends javax.swing.JInternalFrame {
     try {
       textTotal.setText(String.valueOf(calculateCost(price, qty)));
     } catch (Exception e) {
-      JOptionPane.showMessageDialog(this, "<html><div color=red>Price or Seats Invalid", "Error", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "<html><div color=red>Price or Seats Invalid", "Error",
+          JOptionPane.ERROR_MESSAGE);
     }
   }//GEN-LAST:event_txtseatsStateChanged
 
@@ -622,7 +620,6 @@ public class Ticket extends javax.swing.JInternalFrame {
 
   private void submitButtonAction(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // TODO add your handling code here:
 
     String textId = textTicketNumber.getText();
     String flightId = flightNumber.getText();
@@ -634,30 +631,71 @@ public class Ticket extends javax.swing.JInternalFrame {
     DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
     String date = da.format(textDateOfBirth.getDate());
 
+    //Input handling
+    boolean validInput = true;
     try {
-      con = DriverManager
-          .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
-      pst = con.prepareStatement(
-          "insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
-      pst.setString(1, textId);
-      pst.setString(2, flightId);
-      pst.setString(3, customerId);
-      pst.setString(4, flightClass);
-      pst.setString(5, price);
-      pst.setString(6, seats);
-      pst.setString(7, date);
-      pst.executeUpdate();
+      testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date);
+    } catch (Exception e) {
+      validInput = false;
+    }
 
-      JOptionPane.showMessageDialog(null, "Ticket Booked.........");
-    } catch (SQLException ex) {
-      Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
+    if (validInput) {
+      try {
+        con = DriverManager
+            .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
+        pst = con.prepareStatement(
+            "insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
+        pst.setString(1, textId);
+        pst.setString(2, flightId);
+        pst.setString(3, customerId);
+        pst.setString(4, flightClass);
+        pst.setString(5, price);
+        pst.setString(6, seats);
+        pst.setString(7, date);
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(null, "Ticket Booked.........");
+      } catch (SQLException ex) {
+        Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    } else {
+      JOptionPane.showMessageDialog(null, "<html><div color=red>Invalid Inputs", "Error",
+          JOptionPane.ERROR_MESSAGE);
     }
   }//GEN-LAST:event_jButton1ActionPerformed
 
+  public void testInputForTickets(String textId, String flightId, String customerId,
+      String flightClass, String price, String seats, String date) throws Exception {
+    String textIdPattern = "([T][O][0-9]*)";
+    String flightIdPattern = "([F][O][0-9]*)";
+    String customerIdPattern = "(([C][S][0-9]*))";
+    String datePattern = "(^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$)";
+
+    if (!textId.matches(textIdPattern)) {
+      throw new Exception("BAD TICKET ID ->" + textId);
+    }
+    if (!flightId.matches(flightIdPattern)) {
+      throw new Exception("BAD FLIGHT ID ->" + flightId);
+    }
+    if (!customerId.matches(customerIdPattern)) {
+      throw new Exception("BAD CUSTOMER ID ->" + customerId);
+    }
+    if (!(flightClass.equals("Economy") || flightClass.equals("Business"))) {
+      throw new Exception("BAD FLIGHT CLASS ->" + flightClass);
+    }
+    if (Integer.parseInt(price) <= 0) {
+      throw new Exception("BAD PRICE ->" + price);
+    }
+    if (Integer.parseInt(seats) <= 0) {
+      throw new Exception("BAD SEATS ->" + seats);
+    }
+    if (!date.matches(datePattern)) {
+      throw new Exception("BAD DATE ->" + date);
+    }
+  }
+
   private void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    // TODO add your handling code here:
-
     this.hide();
   }//GEN-LAST:event_jButton2ActionPerformed
 

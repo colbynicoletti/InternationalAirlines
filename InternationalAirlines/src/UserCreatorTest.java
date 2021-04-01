@@ -6,17 +6,14 @@ import org.junit.jupiter.api.*;
 
 class UserCreatorTest {
 
-  private static UserCreator testUserCreator;
-  private static String firstName;
-  private static String lastName;
-  private static String username;
-  private static String password;
+  private UserCreator testUserCreator = new UserCreator();
+  private String firstName;
+  private String lastName;
+  private String username;
+  private String password;
 
-  @BeforeAll
-  public static void initializeVariables() {
-    testUserCreator = new UserCreator();
-
-    //set valid input
+  @BeforeEach
+  public void setValidInput() {
     firstName = "Ben";
     lastName = "Deleuze";
     username = "Ben.Deleuze";
