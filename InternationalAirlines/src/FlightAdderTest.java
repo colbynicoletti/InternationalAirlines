@@ -1,14 +1,11 @@
 package InternationalAirlines.src;
 
-import com.toedter.calendar.JDateChooser;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,8 +14,9 @@ class FlightAdderTest {
     private static FlightAdder testFlightAdder;
     private static ActionEvent evt;
 
+
     @BeforeEach
-    public static void initializeVariables() {
+    public void initializeVariables() {
         testFlightAdder = new FlightAdder();
         evt = new ActionEvent(testFlightAdder, 1, "");
 
@@ -39,49 +37,50 @@ class FlightAdderTest {
 
     @Test
     public void testInvalidFlightName_ThrowsException() {
-        JTextField flightName = new JTextField("123SUCK");
+        JTextField flightName = new JTextField("American");
         testFlightAdder.setTxtflightname(flightName);
 
-        assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
+        assertThrows(Exception.class, () -> testFlightAdder.submitFlightButtonClick(evt));
+
     }
 
     @Test
     public void testInvalidFlightCharge_ThrowsException() {
-        JTextField flightCharge = new JTextField("123SUCK");
+        JTextField flightCharge = new JTextField("agfhthr");
         testFlightAdder.setTxtflightname(flightCharge);
 
-        assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
+        assertThrows(Exception.class, () -> testFlightAdder.submitFlightButtonClick(evt));
     }
 
     @Test
     public void testInvalidSource_ThrowsException() {
-        JTextField source = new JTextField("123SUCK");
+        JTextField source = new JTextField("Canada");
         testFlightAdder.setTxtflightname(source);
 
-        assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
+        assertThrows(Exception.class, () -> testFlightAdder.submitFlightButtonClick(evt));
     }
 
     @Test
     public void testInvalidDepart_ThrowsException() {
-        JTextField depart = new JTextField("123SUCK");
+        JTextField depart = new JTextField("China");
         testFlightAdder.setTxtflightname(depart);
 
-        assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
+        assertThrows(Exception.class, () -> testFlightAdder.submitFlightButtonClick(evt));
     }
 
     @Test
     public void testInvalidDTime_ThrowsException() {
-        JTextField dTime = new JTextField("123SUCK");
+        JTextField dTime = new JTextField("");
         testFlightAdder.setTxtflightname(dTime);
 
-        assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
+        assertThrows(Exception.class, () -> testFlightAdder.submitFlightButtonClick(evt));
     }
 
     @Test
     public void testInvalidArrTime_ThrowsException() {
-        JTextField arrTime = new JTextField("123SUCK");
+        JTextField arrTime = new JTextField("14:00");
         testFlightAdder.setTxtflightname(arrTime);
 
-        assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
+        assertThrows(Exception.class, () -> testFlightAdder.submitFlightButtonClick(evt));
     }
 }

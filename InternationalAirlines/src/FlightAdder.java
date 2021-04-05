@@ -93,7 +93,7 @@ public class FlightAdder extends javax.swing.JInternalFrame {
     addButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         try {
-          jButton1ActionPerformed(evt);
+          submitFlightButtonClick(evt);
         } catch (Exception e) {
           e.printStackTrace();
         }
@@ -292,21 +292,9 @@ public class FlightAdder extends javax.swing.JInternalFrame {
   }
 
 
-  public void jButton1ActionPerformed(
+  public void submitFlightButtonClick(
       java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
-    String id = textFlightId.getText();
-    String flightName = txtflightname.getText();
-
-    String source = textSource.getSelectedItem().toString().trim();
-    String depart = textDepart.getSelectedItem().toString().trim();
-
-    DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-    String date = da.format(txtdate.getDate());
-    String departTime = txtdtime.getText();
-    String arrivalTime = txtarrtime.getText();
-    String flightCharge = txtflightcharge.getText();
-
     //REGEX Patterns - not finished
     String flightNamePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
     String sourcePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
@@ -315,32 +303,34 @@ public class FlightAdder extends javax.swing.JInternalFrame {
     String departTimePattern = "^([01]\\d|2[0-3]):?([0-5]\\d)$";
     String arrivalTimePattern = "^([01]\\d|2[0-3]):?([0-5]\\d)$";
 
+    String id = textFlightId.getText();
 
-    //Exception Handles
+    String flightName = txtflightname.getText();
     if (!flightName.matches(flightNamePattern)) {
       throw new Exception("BAD FLIGHT NAME ->" + flightName);
     }
-
+    String source = textSource.getSelectedItem().toString().trim();
     if (!source.matches(sourcePattern)) {
       throw new Exception("BAD SOURCE ->" + source);
     }
-
+    String depart = textDepart.getSelectedItem().toString().trim();
     if (!depart.matches(departPattern)) {
       throw new Exception("BAD DEPART ->" + depart);
     }
-
-    if (!flightCharge.matches(flightChargePattern)) {
-      throw new Exception("BAD FLIGHT CHARGE ->" + flightCharge);
-    }
-
+    DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+    String date = da.format(txtdate.getDate());
+    String departTime = txtdtime.getText();
     if (!departTime.matches(departTimePattern)) {
       throw new Exception("BAD DEPART TIME ->" + depart);
     }
-
+    String arrivalTime = txtarrtime.getText();
     if (!arrivalTime.matches(arrivalTimePattern)) {
       throw new Exception("BAD ARRIVAL TIME ->" + arrivalTime);
     }
-
+    String flightCharge = txtflightcharge.getText();
+    if (!flightCharge.matches(flightChargePattern)) {
+      throw new Exception("BAD FLIGHT CHARGE ->" + flightCharge);
+    }
 
     try {
       con = DriverManager

@@ -35,7 +35,7 @@ class CustomerSearchTest {
 
     @Test
     public void testInvalidFirstName_ThrowsException() {
-        JTextField firstName = new JTextField("8088");
+        JTextField firstName = new JTextField("123bad");
         testCustomerSearch.setTxtfirstName(firstName);
 
         assertThrows(Exception.class, () -> testCustomerSearch.updateButtonClick(evt));
