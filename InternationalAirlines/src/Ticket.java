@@ -499,6 +499,7 @@ public class Ticket extends javax.swing.JInternalFrame {
 
   }//GEN-LAST:event_jButton3ActionPerformed
 
+  //gets list of flights from DB, based on source and departure locations
   public ArrayList<Vector> getFlightsFromDB(String source, String depart) {
     ArrayList<Vector> flights = new ArrayList<>();
     try {
@@ -565,6 +566,7 @@ public class Ticket extends javax.swing.JInternalFrame {
 
   }//GEN-LAST:event_jButton4ActionPerformed
 
+  //gets customer's firstname lastname and passport number from DB
   public String[] getCustomerInfoFromDB(String id) {
     try {
       con = DriverManager
@@ -656,6 +658,7 @@ public class Ticket extends javax.swing.JInternalFrame {
     }
   }//GEN-LAST:event_jButton1ActionPerformed
 
+  //handling for submitting a purchased ticket to DB
   public void testInputForTickets(String textId, String flightId, String customerId,
       String flightClass, String price, String seats, String date) throws Exception {
     String textIdPattern = "([T][O][0-9]*)";
@@ -686,6 +689,7 @@ public class Ticket extends javax.swing.JInternalFrame {
     }
   }
 
+  //adds purchased ticket to DB
   public boolean addTicketToDB(String textId, String flightId, String customerId,
       String flightClass, String price, String seats, String date) {
     try {
