@@ -1,8 +1,5 @@
 package InternationalAirlines.src;
 
-
-import com.toedter.calendar.JCalendar;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -18,16 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-
 public class CustomerAdder extends javax.swing.JInternalFrame {
-
 
   /**
    * Creates new form addCustomer
@@ -280,7 +274,11 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     addButton.setText("Add");
     addButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton2ActionPerformed(evt);
+        try {
+          jButton2ActionPerformed(evt);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
     });
 
@@ -376,10 +374,8 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-
   public void autoID() {
     try {
-      Class.forName("com.mysql.jdbc.Driver");
       con = DriverManager
           .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
       Statement s = con.createStatement();
@@ -393,20 +389,11 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
             .parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
         id++;
         txtid.setText("CS" + String.format("%03d", id));
-
-
       }
-
-
-    } catch (ClassNotFoundException ex) {
-      Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
-
-
   }
-
 
   private void txtlastnameActionPerformed(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtlastnameActionPerformed
@@ -443,18 +430,13 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
         baos.write(buff, 0, readNum);
       }
       userimage = baos.toByteArray();
-
-
     } catch (IOException ex) {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
-
-
   }//GEN-LAST:event_jButton1ActionPerformed
 
-  private void jButton2ActionPerformed(
+  public void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    // TODO add your handling code here:
 
     String id = txtid.getText();
     String firstname = txtfirstname.getText();
@@ -462,49 +444,92 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     String nic = txtnic.getText();
     String passport = txtpassport.getText();
     String address = txtaddress.getText();
-
     DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
     String date = da.format(txtdob.getDate());
-    String Gender;
-
+    String gender;
     if (maleRadioButton.isSelected()) {
-      Gender = "Male";
+      gender = "Male";
     } else {
-      Gender = "FeMale";
+      gender = "Female";
     }
-
     String contact = txtcontact.getText();
 
+    //Input handling
+    boolean validInput = true;
     try {
-      Class.forName("com.mysql.jdbc.Driver");
-      con = DriverManager
-          .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
-      pst = con.prepareStatement(
-          "insert into customer(id,firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
-
-      pst.setString(1, id);
-      pst.setString(2, firstname);
-      pst.setString(3, lastname);
-      pst.setString(4, nic);
-      pst.setString(5, passport);
-      pst.setString(6, address);
-      pst.setString(7, date);
-      pst.setString(8, Gender);
-      pst.setString(9, contact);
-      pst.setBytes(10, userimage);
-      pst.executeUpdate();
-
-      JOptionPane.showMessageDialog(null, "Registation Createdd.........");
-
-
-    } catch (ClassNotFoundException ex) {
-      Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (SQLException ex) {
-      Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
+      testInputForNewCustomer(firstname, lastname, nic, passport, address, date, contact, gender);
+    } catch (Exception e) {
+      validInput = false;
     }
 
+    if (validInput) {
+      try {
+        con = DriverManager
+            .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
+        pst = con.prepareStatement(
+            "insert into customer(id,firstname,lastname,nic,passport,address,dob,gender,contact,photo)values(?,?,?,?,?,?,?,?,?,?)");
 
+        pst.setString(1, id);
+        pst.setString(2, firstname);
+        pst.setString(3, lastname);
+        pst.setString(4, nic);
+        pst.setString(5, passport);
+        pst.setString(6, address);
+        pst.setString(7, date);
+        pst.setString(8, gender);
+        pst.setString(9, contact);
+        pst.setBytes(10, userimage);
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(null, "Registration Created.........");
+      } catch (SQLException ex) {
+        Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    } else {
+      JOptionPane.showMessageDialog(null, "<html><div color=red>Invalid Inputs", "Error",
+          JOptionPane.ERROR_MESSAGE);
+    }
   }//GEN-LAST:event_jButton2ActionPerformed
+
+  public void testInputForNewCustomer(String firstname, String lastname, String nic,
+      String passport, String address, String date, String contact, String gender)
+      throws Exception {
+    String firstNamePattern = "[A-Z][a-z]*";
+    String lastNamePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
+    String nicPattern = "[0-9]{8}";
+    String passportPattern = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
+    String addressPattern = "(\\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Rd|Blvd|Ln|St)\\.?)";
+    String datePattern = "(^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$)";
+    String contactPattern = "[0-9]{10}";
+
+    if (!firstname.matches(firstNamePattern)) {
+      throw new Exception("BAD FIRSTNAME ->" + firstname);
+    }
+    if (!lastname.matches(lastNamePattern)) {
+      throw new Exception("BAD LASTNAME ->" + lastname);
+    }
+    if (!nic.matches(nicPattern)) {
+      throw new Exception("BAD NIC ->" + nic);
+    }
+    if (!passport.matches(passportPattern)) {
+      throw new Exception("BAD PASSPORT ->" + passport);
+    }
+    if (!address.matches(addressPattern)) {
+      throw new Exception("BAD ADDRESS ->" + address);
+    }
+    if (date == null) {
+      throw new Exception("BAD DATE ->" + date);
+    }
+    if (!date.matches(datePattern)) {
+      throw new Exception("BAD DATE ->" + date);
+    }
+    if (!contact.matches(contactPattern)) {
+      throw new Exception("BAD CONTACT ->" + contact);
+    }
+    if (!(gender.equals("Male") || gender.equals("Female"))) {
+      throw new Exception("BAD GENDER ->" + gender);
+    }
+  }
 
   private void jButton3ActionPerformed(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -513,8 +538,7 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     this.hide();
   }//GEN-LAST:event_jButton3ActionPerformed
 
-
-  // Variables declaration - do not modify//GEN-BEGIN:variables
+  //<editor-fold desc="SWING Variables Declarations">
   private javax.swing.JButton browseButton;
   private javax.swing.JButton addButton;
   private javax.swing.JButton cancelButton;
@@ -541,5 +565,6 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
   private javax.swing.JTextField txtpassport;
   private javax.swing.JLabel txtphoto;
   private com.toedter.calendar.JDateChooser txtdob;
-  // End of variables declaration//GEN-END:variables
+  //</editor-fold>
+
 }

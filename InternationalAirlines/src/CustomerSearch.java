@@ -35,7 +35,6 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
    */
   public CustomerSearch() {
     initComponents();
-
   }
 
   Connection con;
@@ -422,7 +421,6 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
       }
       userimage = baos.toByteArray();
 
-
     } catch (IOException ex) {
       Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -455,7 +453,6 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
     String contact = txtcontact.getText();
 
     try {
-      // Class.forName(""); //com.mysql.jdbc.Driver
       con = DriverManager
           .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
       pst = con.prepareStatement(
@@ -498,7 +495,6 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
     String id = txtcustid.getText();
 
     try {
-      //Class.forName(""); //com.mysql.jdbc.Driver
       con = DriverManager
           .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
       pst = con.prepareStatement("select * from customer where id = ?");
@@ -516,7 +512,6 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
         String address = rs.getString("address");
         String dob = rs.getString("dob");
         Date date1 = new SimpleDateFormat("yyyy-mm-dd").parse(dob);
-        System.out.println(date1);
         String gender = rs.getString("gender");
 
         Blob blob = rs.getBlob("photo");
@@ -545,12 +540,7 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
         txtcontact.setText(contact.trim());
         txtdob.setDate(date1);
         txtphoto.setIcon(newImage);
-
-
       }
-
-      //} catch (ClassNotFoundException ex) {
-      //Logger.getLogger(CustomerSearch.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
       Logger.getLogger(CustomerSearch.class.getName()).log(Level.SEVERE, null, ex);
     } catch (ParseException ex) {
@@ -560,8 +550,7 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
 
   }//GEN-LAST:event_jButton4ActionPerformed
 
-
-  // Variables declaration - do not modify//GEN-BEGIN:variables
+  //<editor-fold desc="SWING Variables Declarations">
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton3;
@@ -589,5 +578,5 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
   private javax.swing.JTextField txtpassport;
   private javax.swing.JLabel txtphoto;
   private com.toedter.calendar.JDateChooser txtdob;
-  // End of variables declaration//GEN-END:variables
+  //</editor-fold>
 }

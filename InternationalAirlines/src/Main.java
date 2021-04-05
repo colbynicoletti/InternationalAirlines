@@ -160,7 +160,6 @@ public class Main extends javax.swing.JFrame {
     CustomerAdder cus = new CustomerAdder();
     jDesktopPane1.add(cus);
     cus.setVisible(true);
-
   }//GEN-LAST:event_jMenuItem1ActionPerformed
 
   private void searchCustomerAction(
@@ -170,8 +169,6 @@ public class Main extends javax.swing.JFrame {
     CustomerSearch scus = new CustomerSearch();
     jDesktopPane1.add(scus);
     scus.setVisible(true);
-
-
   }//GEN-LAST:event_jMenuItem2ActionPerformed
 
   private void addFlightAction(
@@ -180,7 +177,6 @@ public class Main extends javax.swing.JFrame {
     FlightAdder f = new FlightAdder();
     jDesktopPane1.add(f);
     f.setVisible(true);
-
   }//GEN-LAST:event_jMenuItem4ActionPerformed
 
   private void ticketAction(
@@ -189,7 +185,6 @@ public class Main extends javax.swing.JFrame {
     Ticket t = new Ticket();
     jDesktopPane1.add(t);
     t.setVisible(true);
-
   }//GEN-LAST:event_jMenuItem3ActionPerformed
 
   private void ticketReportAction(
@@ -199,8 +194,6 @@ public class Main extends javax.swing.JFrame {
     TicketReport ti = new TicketReport();
     jDesktopPane1.add(ti);
     ti.setVisible(true);
-
-
   }//GEN-LAST:event_jMenuItem6ActionPerformed
 
   private void userCreationAction(
@@ -210,8 +203,6 @@ public class Main extends javax.swing.JFrame {
     UserCreator u = new UserCreator();
     jDesktopPane1.add(u);
     u.setVisible(true);
-
-
   }//GEN-LAST:event_jMenuItem5ActionPerformed
 
   /**
@@ -254,7 +245,7 @@ public class Main extends javax.swing.JFrame {
     });
   }
 
-  // Variables declaration - do not modify//GEN-BEGIN:variables
+  //<editor-fold desc="SWING Variables Declarations">
   private javax.swing.JDesktopPane jDesktopPane1;
   private javax.swing.JMenu customerMenu;
   private javax.swing.JMenu ticketsMenu;
@@ -267,5 +258,5 @@ public class Main extends javax.swing.JFrame {
   private javax.swing.JMenuItem addFlightMenu;
   private javax.swing.JMenuItem userCreationMenu;
   private javax.swing.JMenuItem ticketReportItem;
-  // End of variables declaration//GEN-END:variables
+  //</editor-fold>
 }

@@ -165,27 +165,18 @@ public class Login extends javax.swing.JFrame {
           Main m = new Main();
           this.hide();
           m.setVisible(true);
-
-
         } else {
-          JOptionPane.showMessageDialog(this, "UserName or Password do not Match");
+          JOptionPane.showMessageDialog(this, "UserName or Password do not match");
           textUser.setText("");
           textPass.setText("");
           textUser.requestFocus();
-
-
         }
-
-
       } catch (ClassNotFoundException ex) {
         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
       } catch (SQLException ex) {
         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
       }
-
-
     }
-
 
   }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -229,7 +220,7 @@ public class Login extends javax.swing.JFrame {
     });
   }
 
-  // Variables declaration - do not modify//GEN-BEGIN:variables
+  //<editor-fold desc="SWING Variables Declarations">
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JLabel jLabel1;
@@ -237,5 +228,5 @@ public class Login extends javax.swing.JFrame {
   private javax.swing.JPanel jPanel1;
   private javax.swing.JPasswordField textPass;
   private javax.swing.JTextField textUser;
-  // End of variables declaration//GEN-END:variables
+  //</editor-fold>
 }
