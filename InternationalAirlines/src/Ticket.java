@@ -638,26 +638,10 @@ public class Ticket extends javax.swing.JInternalFrame {
     } catch (Exception e) {
       validInput = false;
     }
-
-    if (validInput) {
-      try {
-        con = DriverManager
-            .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
-        pst = con.prepareStatement(
-            "insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
-        pst.setString(1, textId);
-        pst.setString(2, flightId);
-        pst.setString(3, customerId);
-        pst.setString(4, flightClass);
-        pst.setString(5, price);
-        pst.setString(6, seats);
-        pst.setString(7, date);
-        pst.executeUpdate();
-
-        JOptionPane.showMessageDialog(null, "Ticket Booked.........");
-      } catch (SQLException ex) {
-        Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
-      }
+    //if input valid, insert into DB
+    if (validInput && addTicketToDB(textId, flightId, customerId, flightClass, price, seats,
+        date)) {
+      JOptionPane.showMessageDialog(null, "Ticket Booked.........");
     } else {
       JOptionPane.showMessageDialog(null, "<html><div color=red>Invalid Inputs", "Error",
           JOptionPane.ERROR_MESSAGE);
@@ -692,6 +676,28 @@ public class Ticket extends javax.swing.JInternalFrame {
     if (!date.matches(datePattern)) {
       throw new Exception("BAD DATE ->" + date);
     }
+  }
+
+  public boolean addTicketToDB(String textId, String flightId, String customerId,
+      String flightClass, String price, String seats, String date) {
+    try {
+      con = DriverManager
+          .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
+      pst = con.prepareStatement(
+          "insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
+      pst.setString(1, textId);
+      pst.setString(2, flightId);
+      pst.setString(3, customerId);
+      pst.setString(4, flightClass);
+      pst.setString(5, price);
+      pst.setString(6, seats);
+      pst.setString(7, date);
+      pst.executeUpdate();
+    } catch (SQLException ex) {
+      Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
+      return false;
+    }
+    return true;
   }
 
   private void jButton2ActionPerformed(

@@ -2,6 +2,11 @@ package InternationalAirlines.src;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,6 +15,8 @@ import org.junit.jupiter.api.*;
 class TicketTest {
 
   private Ticket testTicket = new Ticket();
+  Connection con;
+  PreparedStatement pst;
   private String textId;
   private String flightId;
   private String customerId;
@@ -22,13 +29,51 @@ class TicketTest {
   public void setValidInputs() {
     textId = "TO001";
     flightId = "FO001";
-    customerId = "CS001";
+    customerId = "CS000";
     flightClass = "Economy";
     price = "500";
     seats = "1";
     Date dDate = new Date(System.currentTimeMillis());
     DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
     date = da.format(dDate);
+  }
+
+  @Test
+  public void integrationTestAddTicketToDB_NoExceptionThrown() throws SQLException {
+    assertTrue(
+        testTicket.addTicketToDB(textId, flightId, customerId, flightClass, price, seats, date));
+
+    //collect what was added to DB
+    con = DriverManager
+        .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
+    pst = con.prepareStatement(
+        "select id,flightid,custid,class,price,seats,date from ticket WHERE id = ? AND custid = ?");
+    pst.setString(1, textId);
+    pst.setString(2, customerId);
+    ResultSet rs = pst.executeQuery();
+    rs.next();
+    String dbTextId = rs.getString("id");
+    String dbFlightId = rs.getString("flightid");
+    String dbCustomerID = rs.getString("custid");
+    String dbFlightClass = rs.getString("class");
+    String dbPrice = rs.getString("price");
+    String dbSeats = rs.getString("seats");
+    String dbDate = rs.getString("date");
+
+    //test if what was added was correct
+    assertTrue(dbTextId.equals(textId));
+    assertEquals(dbFlightId, flightId);
+    assertEquals(dbCustomerID, customerId);
+    assertEquals(dbFlightClass, flightClass);
+    assertEquals(dbPrice, price);
+    assertEquals(dbSeats, seats);
+    assertEquals(dbDate, date);
+
+    //remove test data from DB
+    pst = con.prepareStatement("DELETE FROM ticket WHERE id = ? AND custid = ?");
+    pst.setString(1, textId);
+    pst.setString(2, customerId);
+    pst.executeUpdate();
   }
 
   @Test
