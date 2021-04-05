@@ -17,7 +17,7 @@ class FlightAdderTest {
     private static FlightAdder testFlightAdder;
     private static ActionEvent evt;
 
-    @BeforeAll
+    @BeforeEach
     public static void initializeVariables() {
         testFlightAdder = new FlightAdder();
         evt = new ActionEvent(testFlightAdder, 1, "");
@@ -38,9 +38,49 @@ class FlightAdderTest {
     }
 
     @Test
-    public void testInvalidFirstName_ThrowsException() {
+    public void testInvalidFlightName_ThrowsException() {
         JTextField flightName = new JTextField("123SUCK");
         testFlightAdder.setTxtflightname(flightName);
+
+        assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
+    }
+
+    @Test
+    public void testInvalidFlightCharge_ThrowsException() {
+        JTextField flightCharge = new JTextField("123SUCK");
+        testFlightAdder.setTxtflightname(flightCharge);
+
+        assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
+    }
+
+    @Test
+    public void testInvalidSource_ThrowsException() {
+        JTextField source = new JTextField("123SUCK");
+        testFlightAdder.setTxtflightname(source);
+
+        assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
+    }
+
+    @Test
+    public void testInvalidDepart_ThrowsException() {
+        JTextField depart = new JTextField("123SUCK");
+        testFlightAdder.setTxtflightname(depart);
+
+        assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
+    }
+
+    @Test
+    public void testInvalidDTime_ThrowsException() {
+        JTextField dTime = new JTextField("123SUCK");
+        testFlightAdder.setTxtflightname(dTime);
+
+        assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
+    }
+
+    @Test
+    public void testInvalidArrTime_ThrowsException() {
+        JTextField arrTime = new JTextField("123SUCK");
+        testFlightAdder.setTxtflightname(arrTime);
 
         assertThrows(Exception.class, () -> testFlightAdder.jButton1ActionPerformed(evt));
     }

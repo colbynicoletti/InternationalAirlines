@@ -309,16 +309,16 @@ public class FlightAdder extends javax.swing.JInternalFrame {
 
     //REGEX Patterns - not finished
     String flightNamePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
-    String sourcePattern = "";
-    String departPattern = "";
-    String flightChargePattern = "";
+    String sourcePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
+    String departPattern = "[A-Z]+([A-Za-z'\\s\\-])*";
+    String flightChargePattern = "/^\\$?[0-9]+(\\.[0-9][0-9])?$/";
     String departTimePattern = "^([01]\\d|2[0-3]):?([0-5]\\d)$";
     String arrivalTimePattern = "^([01]\\d|2[0-3]):?([0-5]\\d)$";
 
 
     //Exception Handles
     if (!flightName.matches(flightNamePattern)) {
-      throw new Exception("BAD FLIGHTNAME ->" + flightName);
+      throw new Exception("BAD FLIGHT NAME ->" + flightName);
     }
 
     if (!source.matches(sourcePattern)) {
@@ -338,7 +338,7 @@ public class FlightAdder extends javax.swing.JInternalFrame {
     }
 
     if (!arrivalTime.matches(arrivalTimePattern)) {
-      throw new Exception("BAD CONTACT ->" + arrivalTime);
+      throw new Exception("BAD ARRIVAL TIME ->" + arrivalTime);
     }
 
 
@@ -359,7 +359,7 @@ public class FlightAdder extends javax.swing.JInternalFrame {
 
       pst.executeUpdate();
 
-      JOptionPane.showMessageDialog(null, "Flight Createdd.........");
+      JOptionPane.showMessageDialog(null, "Flight Created.........");
     } catch (SQLException ex) {
       Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
     }
