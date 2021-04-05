@@ -2,6 +2,7 @@ package InternationalAirlines.src;
 
 import com.toedter.calendar.JCalendar;
 
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -489,11 +490,17 @@ public class Ticket extends javax.swing.JInternalFrame {
 
   private void submitTicketToDBAction(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    // TODO add your handling code here:
-
     String source = textSource.getSelectedItem().toString().trim();
     String depart = text_depart.getSelectedItem().toString().trim();
+    ArrayList<Vector> flights = getFlightsFromDB(source, depart);
+    DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+    Df.setRowCount(0);
+    flights.stream().forEach(i -> Df.addRow(i));
 
+  }//GEN-LAST:event_jButton3ActionPerformed
+
+  public ArrayList<Vector> getFlightsFromDB(String source, String depart) {
+    ArrayList<Vector> flights = new ArrayList<>();
     try {
       con = DriverManager
           .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
@@ -501,34 +508,31 @@ public class Ticket extends javax.swing.JInternalFrame {
       pst.setString(1, source);
       pst.setString(2, depart);
       ResultSet rs = pst.executeQuery();
-
-      ResultSetMetaData rsm = rs.getMetaData();
-      int c;
-      c = rsm.getColumnCount();
-
-      DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
-      Df.setRowCount(0);
+//seems like useless code
+//      ResultSetMetaData rsm = rs.getMetaData();
+//      int c;
+//      c = rsm.getColumnCount();
 
       while (rs.next()) {
         Vector v2 = new Vector();
 
-        for (int i = 1; i <= c; i++) {
-          v2.add(rs.getString("id"));
-          v2.add(rs.getString("flightname"));
-          v2.add(rs.getString("source"));
-          v2.add(rs.getString("depart"));
-          v2.add(rs.getString("date"));
-          v2.add(rs.getString("deptime"));
-          v2.add(rs.getString("arrtime"));
-          v2.add(rs.getString("flightcharge"));
-        }
-
-        Df.addRow(v2);
+//        for (int i = 1; i <= c; i++) {
+        v2.add(rs.getString("id"));
+        v2.add(rs.getString("flightname"));
+        v2.add(rs.getString("source"));
+        v2.add(rs.getString("depart"));
+        v2.add(rs.getString("date"));
+        v2.add(rs.getString("deptime"));
+        v2.add(rs.getString("arrtime"));
+        v2.add(rs.getString("flightcharge"));
+//        }
+        flights.add(v2);
       }
     } catch (SQLException ex) {
       Logger.getLogger(Ticket.class.getName()).log(Level.SEVERE, null, ex);
     }
-  }//GEN-LAST:event_jButton3ActionPerformed
+    return flights;
+  }
 
   public void autoID() {
     try {
@@ -572,7 +576,8 @@ public class Ticket extends javax.swing.JInternalFrame {
       if (rs.next() == false) {
         JOptionPane.showMessageDialog(this, "Record not Found");
       } else {
-        String[] customerInfo = {rs.getString("firstname"), rs.getString("lastname"), rs.getString("passport")};
+        String[] customerInfo = {rs.getString("firstname"), rs.getString("lastname"),
+            rs.getString("passport")};
         return customerInfo;
       }
     } catch (SQLException ex) {
