@@ -39,6 +39,46 @@ class TicketTest {
   }
 
   @Test
+  public void integrationTestSearchCustomerInDB_NoExceptionThrown() throws SQLException {
+    String[] customerInfo = {"TestFirstName", "TestLastName", "TestPassportNumber"};
+    String[] dbCustomerInfo;
+    String id = "CS000";
+    String nic = "TestNic";
+    String address = "TestAdress";
+    String dob = "TestDOB";
+    String gender = "TestGender";
+    int contact = 0000000000;
+    byte[] photo = {1};
+
+    //add test customer to DB
+    con = DriverManager
+        .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
+    pst = con.prepareStatement(
+        "INSERT INTO customer (id, firstname, lastname, nic, passport, address, dob, gender, contact, photo) VALUES (?,?,?,?,?,?,?,?,?,?)");
+    pst.setString(1, id);
+    pst.setString(2, customerInfo[0]);
+    pst.setString(3, customerInfo[1]);
+    pst.setString(4, nic);
+    pst.setString(5, customerInfo[2]);
+    pst.setString(6, address);
+    pst.setString(7, dob);
+    pst.setString(8, gender);
+    pst.setInt(9, contact);
+    pst.setBytes(10, photo);
+    pst.executeUpdate();
+    //check if info is correct
+    dbCustomerInfo = testTicket.getCustomerInfoFromDB(id);
+    assertEquals(dbCustomerInfo[0], customerInfo[0]);
+    assertEquals(dbCustomerInfo[1], customerInfo[1]);
+    assertEquals(dbCustomerInfo[2], customerInfo[2]);
+    //remove added customer from DB
+    pst = con.prepareStatement("DELETE FROM customer WHERE id = ? AND firstname = ?");
+    pst.setString(1, id);
+    pst.setString(2, customerInfo[0]);
+    pst.executeUpdate();
+  }
+
+  @Test
   public void integrationTestAddTicketToDB_NoExceptionThrown() throws SQLException {
     assertTrue(
         testTicket.addTicketToDB(textId, flightId, customerId, flightClass, price, seats, date));
@@ -61,7 +101,7 @@ class TicketTest {
     String dbDate = rs.getString("date");
 
     //test if what was added was correct
-    assertTrue(dbTextId.equals(textId));
+    assertEquals(dbTextId, textId);
     assertEquals(dbFlightId, flightId);
     assertEquals(dbCustomerID, customerId);
     assertEquals(dbFlightClass, flightClass);

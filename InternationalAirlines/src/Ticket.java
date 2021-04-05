@@ -553,9 +553,15 @@ public class Ticket extends javax.swing.JInternalFrame {
 
   private void submitPassportInfotoDBAction(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    // TODO add your handling code here:
     String id = textCustomerId.getText();
+    String[] customerInfo = getCustomerInfoFromDB(id);
+    textFirstName.setText(customerInfo[0].trim());
+    textLastName.setText(customerInfo[1].trim());
+    textPassport.setText(customerInfo[2].trim());
 
+  }//GEN-LAST:event_jButton4ActionPerformed
+
+  public String[] getCustomerInfoFromDB(String id) {
     try {
       con = DriverManager
           .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
@@ -566,17 +572,14 @@ public class Ticket extends javax.swing.JInternalFrame {
       if (rs.next() == false) {
         JOptionPane.showMessageDialog(this, "Record not Found");
       } else {
-        String fname = rs.getString("firstname");
-        String lname = rs.getString("lastname");
-        String passport = rs.getString("passport");
-        textFirstName.setText(fname.trim());
-        textLastName.setText(lname.trim());
-        textPassport.setText(passport.trim());
+        String[] customerInfo = {rs.getString("firstname"), rs.getString("lastname"), rs.getString("passport")};
+        return customerInfo;
       }
     } catch (SQLException ex) {
       Logger.getLogger(Ticket.class.getName()).log(Level.SEVERE, null, ex);
     }
-  }//GEN-LAST:event_jButton4ActionPerformed
+    return null;
+  }
 
   private void ticketTableClickedAction(
       java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
