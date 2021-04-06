@@ -384,6 +384,7 @@ public class FlightAdder extends javax.swing.JInternalFrame {
   private javax.swing.JComboBox<String> textSource;
   //</editor-fold>
 
+  /* These are the setters for the test suite used in FlightAdderTest. */
   public void setTxtflightname(JTextField txtflightname) {
     this.txtflightname = txtflightname;
   }

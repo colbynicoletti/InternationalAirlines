@@ -284,7 +284,7 @@ public class UserCreator extends javax.swing.JInternalFrame {
   private javax.swing.JTextField textUsername;
   //</editor-fold>
 
-  //setters for test class
+  /* These are the setters for the test suite used in UserCreatorTest. */
   public void setTextFirstName(JTextField textFirstName) {
     this.textFirstName = textFirstName;
   }

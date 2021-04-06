@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** This is the test suite for Flight Adder.
+ */
 class FlightAdderTest {
 
     private static FlightAdder testFlightAdder;

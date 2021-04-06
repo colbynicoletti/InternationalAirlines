@@ -247,6 +247,7 @@ public class Login extends javax.swing.JFrame {
   private javax.swing.JTextField textUser;
   //</editor-fold>
 
+  /* These are the setters for the test suite used in LoginTest. */
   public void setTextUser(JTextField textUser) {
     this.textUser = textUser;
   }

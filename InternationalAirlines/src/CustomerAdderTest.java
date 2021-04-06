@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.jupiter.api.*;
 
+/** @author Nick Gadomski, Jose Ruiz-Ramon, Ben Deleuze, Colby Nicoletti
+ This is the test suite for the customer adder. **/
 public class CustomerAdderTest {
 
   private CustomerAdder testCustomerAdder = new CustomerAdder();
@@ -34,7 +36,8 @@ public class CustomerAdderTest {
   }
 
   @Test
-  public void testInvalidFirstName_ThrowsException() {
+  public void testInvalidFirstName_ThrowsException()
+  {
     firstName = "123SUCK";
     assertThrows(Exception.class, () -> testCustomerAdder
             .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
@@ -42,7 +45,8 @@ public class CustomerAdderTest {
   }
 
   @Test
-  public void TestInvalidLastName_ThrowsException() {
+  public void TestInvalidLastName_ThrowsException()
+  {
     lastName = "!@#MY";
     assertThrows(Exception.class, () -> testCustomerAdder
             .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
@@ -50,7 +54,8 @@ public class CustomerAdderTest {
   }
 
   @Test
-  public void TestInvalidNic_ThrowsException() {
+  public void TestInvalidNic_ThrowsException()
+  {
     nic = "(*)(*)";
     assertThrows(Exception.class, () -> testCustomerAdder
             .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
@@ -58,7 +63,8 @@ public class CustomerAdderTest {
   }
 
   @Test
-  public void TestInvalidPassport_ThrowsException() {
+  public void TestInvalidPassport_ThrowsException()
+  {
     passport = "APR1234";
     assertThrows(Exception.class, () -> testCustomerAdder
             .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
@@ -66,7 +72,8 @@ public class CustomerAdderTest {
   }
 
   @Test
-  public void TestInvalidAddress_ThrowsException() {
+  public void TestInvalidAddress_ThrowsException()
+  {
     address = "8008 san carlos";
     assertThrows(Exception.class, () -> testCustomerAdder
             .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
@@ -74,7 +81,8 @@ public class CustomerAdderTest {
   }
 
   @Test
-  public void TestInvalidDate_ThrowsException() {
+  public void TestInvalidDate_ThrowsException()
+  {
     date = "";
     assertThrows(Exception.class, () -> testCustomerAdder
             .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
@@ -82,7 +90,8 @@ public class CustomerAdderTest {
   }
 
   @Test
-  public void TestInvalidContact_ThrowsException() {
+  public void TestInvalidContact_ThrowsException()
+  {
     contact = "12345678901234";
     assertThrows(Exception.class, () -> testCustomerAdder
             .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
@@ -90,7 +99,8 @@ public class CustomerAdderTest {
   }
 
   @Test
-  public void testAllValid_NoExceptionThrown() throws Exception {
+  public void testAllValid_NoExceptionThrown() throws Exception
+  {
     assertDoesNotThrow(() -> testCustomerAdder
             .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
                     gender));

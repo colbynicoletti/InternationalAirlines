@@ -613,6 +613,7 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
   private com.toedter.calendar.JDateChooser txtdob;
   //</editor-fold>
 
+  /* These are the setters for the test suite used in CustomerSearchTest. */
   public void setTxtfirstName(JTextField txtfirstname) {
     this.txtfirstname = txtfirstname;
   }
