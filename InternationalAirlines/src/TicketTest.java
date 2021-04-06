@@ -1,7 +1,11 @@
 package InternationalAirlines.src;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
+import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 import org.junit.jupiter.api.*;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 
 class TicketTest {
 
@@ -38,6 +44,29 @@ class TicketTest {
     Date dDate = new Date(System.currentTimeMillis());
     DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
     date = da.format(dDate);
+  }
+
+
+  @Test
+  public void integrationTest_addToDB_Using_TicketMock() {
+    //create mock TicketReport object
+    Ticket mockTicket = Mockito.spy(new Ticket());
+    ActionEvent evt = new ActionEvent(mockTicket, 1, "");
+    mockTicket.setTextTicketNumber(textId);
+    mockTicket.setFlightNumber(flightId);
+    mockTicket.setTextCustomerId(customerId);
+    mockTicket.setTxtclass(flightClass);
+    mockTicket.setTextPrice(price);
+    mockTicket.setTextSeats(seats);
+
+    //Prevent the LoadData from being used but still called.
+    Mockito.doReturn(true).when(mockTicket)
+        .addTicketToDB(textId, flightId, customerId, flightClass, price, seats, date);
+    //call initComponents (tested method)  to see if it loads data
+    mockTicket.submitButtonAction(evt);
+    //Check to see if the LoadData has been accessed.
+    verify(mockTicket, times(1))
+        .addTicketToDB(textId, flightId, customerId, flightClass, price, seats, date);
   }
 
   @Test

@@ -20,7 +20,7 @@ public class TicketReport extends javax.swing.JInternalFrame {
    */
   public TicketReport() {
     initComponents();
-    LoadData();
+    //LoadData();
   }
 
   Connection con;
@@ -32,7 +32,7 @@ public class TicketReport extends javax.swing.JInternalFrame {
    */
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-  private void initComponents() {
+  public void initComponents() {
 
     jScrollPane1 = new javax.swing.JScrollPane();
     jTable1 = new javax.swing.JTable();
@@ -84,6 +84,8 @@ public class TicketReport extends javax.swing.JInternalFrame {
     );
 
     pack();
+    //load tickets from DB
+    LoadData();
   }// </editor-fold>//GEN-END:initComponents
 
   private void jButton1ActionPerformed(
