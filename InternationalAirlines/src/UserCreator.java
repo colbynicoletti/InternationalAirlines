@@ -234,7 +234,7 @@ public class UserCreator extends javax.swing.JInternalFrame {
       pst.setString(5, password);
       pst.executeUpdate();
 
-      JOptionPane.showMessageDialog(null, "User Createdd.........");
+      JOptionPane.showMessageDialog(null, "User Created.........");
     } catch (SQLException ex) {
       Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
     }

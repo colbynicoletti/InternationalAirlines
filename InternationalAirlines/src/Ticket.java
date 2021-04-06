@@ -2,6 +2,7 @@ package InternationalAirlines.src;
 
 import com.toedter.calendar.JCalendar;
 
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -16,7 +17,6 @@ import java.util.logging.Logger;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 
 public class Ticket extends javax.swing.JInternalFrame {
 
@@ -490,11 +490,18 @@ public class Ticket extends javax.swing.JInternalFrame {
 
   private void submitTicketToDBAction(
           java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    // TODO add your handling code here:
-
     String source = textSource.getSelectedItem().toString().trim();
     String depart = text_depart.getSelectedItem().toString().trim();
+    ArrayList<Vector> flights = getFlightsFromDB(source, depart);
+    DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+    Df.setRowCount(0);
+    flights.stream().forEach(i -> Df.addRow(i));
 
+  }//GEN-LAST:event_jButton3ActionPerformed
+
+  //gets list of flights from DB, based on source and departure locations
+  public ArrayList<Vector> getFlightsFromDB(String source, String depart) {
+    ArrayList<Vector> flights = new ArrayList<>();
     try {
       con = DriverManager
               .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
@@ -502,35 +509,31 @@ public class Ticket extends javax.swing.JInternalFrame {
       pst.setString(1, source);
       pst.setString(2, depart);
       ResultSet rs = pst.executeQuery();
-
-      ResultSetMetaData rsm = rs.getMetaData();
-      int c;
-      c = rsm.getColumnCount();
-
-      DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
-      Df.setRowCount(0);
+//seems like useless code
+//      ResultSetMetaData rsm = rs.getMetaData();
+//      int c;
+//      c = rsm.getColumnCount();
 
       while (rs.next()) {
         Vector v2 = new Vector();
 
-        for (int i = 1; i <= c; i++) {
-          v2.add(rs.getString("id"));
-          v2.add(rs.getString("flightname"));
-          v2.add(rs.getString("source"));
-          v2.add(rs.getString("depart"));
-          v2.add(rs.getString("date"));
-          v2.add(rs.getString("deptime"));
-          v2.add(rs.getString("arrtime"));
-          v2.add(rs.getString("flightcharge"));
-        }
-
-        Df.addRow(v2);
+//        for (int i = 1; i <= c; i++) {
+        v2.add(rs.getString("id"));
+        v2.add(rs.getString("flightname"));
+        v2.add(rs.getString("source"));
+        v2.add(rs.getString("depart"));
+        v2.add(rs.getString("date"));
+        v2.add(rs.getString("deptime"));
+        v2.add(rs.getString("arrtime"));
+        v2.add(rs.getString("flightcharge"));
+//        }
+        flights.add(v2);
       }
     } catch (SQLException ex) {
       Logger.getLogger(Ticket.class.getName()).log(Level.SEVERE, null, ex);
     }
-  }//GEN-LAST:event_jButton3ActionPerformed
-
+    return flights;
+  }
 
   public void autoID() {
     try {
@@ -553,12 +556,18 @@ public class Ticket extends javax.swing.JInternalFrame {
     }
   }
 
-
   private void submitPassportInfotoDBAction(
           java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    // TODO add your handling code here:
     String id = textCustomerId.getText();
+    String[] customerInfo = getCustomerInfoFromDB(id);
+    textFirstName.setText(customerInfo[0].trim());
+    textLastName.setText(customerInfo[1].trim());
+    textPassport.setText(customerInfo[2].trim());
 
+  }//GEN-LAST:event_jButton4ActionPerformed
+
+  //gets customer's firstname lastname and passport number from DB
+  public String[] getCustomerInfoFromDB(String id) {
     try {
       con = DriverManager
               .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
@@ -569,17 +578,15 @@ public class Ticket extends javax.swing.JInternalFrame {
       if (rs.next() == false) {
         JOptionPane.showMessageDialog(this, "Record not Found");
       } else {
-        String fname = rs.getString("firstname");
-        String lname = rs.getString("lastname");
-        String passport = rs.getString("passport");
-        textFirstName.setText(fname.trim());
-        textLastName.setText(lname.trim());
-        textPassport.setText(passport.trim());
+        String[] customerInfo = {rs.getString("firstname"), rs.getString("lastname"),
+                rs.getString("passport")};
+        return customerInfo;
       }
     } catch (SQLException ex) {
       Logger.getLogger(Ticket.class.getName()).log(Level.SEVERE, null, ex);
     }
-  }//GEN-LAST:event_jButton4ActionPerformed
+    return null;
+  }
 
   private void ticketTableClickedAction(
           java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -603,7 +610,8 @@ public class Ticket extends javax.swing.JInternalFrame {
     try {
       textTotal.setText(String.valueOf(calculateCost(price, qty)));
     } catch (Exception e) {
-      JOptionPane.showMessageDialog(this, "<html><div color=red>Price or Seats Invalid", "Error", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "<html><div color=red>Price or Seats Invalid", "Error",
+              JOptionPane.ERROR_MESSAGE);
     }
   }//GEN-LAST:event_txtseatsStateChanged
 
@@ -622,7 +630,6 @@ public class Ticket extends javax.swing.JInternalFrame {
 
   private void submitButtonAction(
           java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // TODO add your handling code here:
 
     String textId = textTicketNumber.getText();
     String flightId = flightNumber.getText();
@@ -634,6 +641,57 @@ public class Ticket extends javax.swing.JInternalFrame {
     DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
     String date = da.format(textDateOfBirth.getDate());
 
+    //Input handling
+    boolean validInput = true;
+    try {
+      testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date);
+    } catch (Exception e) {
+      validInput = false;
+    }
+    //if input valid, insert into DB
+    if (validInput && addTicketToDB(textId, flightId, customerId, flightClass, price, seats,
+            date)) {
+      JOptionPane.showMessageDialog(null, "Ticket Booked.........");
+    } else {
+      JOptionPane.showMessageDialog(null, "<html><div color=red>Invalid Inputs", "Error",
+              JOptionPane.ERROR_MESSAGE);
+    }
+  }//GEN-LAST:event_jButton1ActionPerformed
+
+  //handling for submitting a purchased ticket to DB
+  public void testInputForTickets(String textId, String flightId, String customerId,
+                                  String flightClass, String price, String seats, String date) throws Exception {
+    String textIdPattern = "([T][O][0-9]*)";
+    String flightIdPattern = "([F][O][0-9]*)";
+    String customerIdPattern = "(([C][S][0-9]*))";
+    String datePattern = "(^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$)";
+
+    if (!textId.matches(textIdPattern)) {
+      throw new Exception("BAD TICKET ID ->" + textId);
+    }
+    if (!flightId.matches(flightIdPattern)) {
+      throw new Exception("BAD FLIGHT ID ->" + flightId);
+    }
+    if (!customerId.matches(customerIdPattern)) {
+      throw new Exception("BAD CUSTOMER ID ->" + customerId);
+    }
+    if (!(flightClass.equals("Economy") || flightClass.equals("Business"))) {
+      throw new Exception("BAD FLIGHT CLASS ->" + flightClass);
+    }
+    if (Integer.parseInt(price) <= 0) {
+      throw new Exception("BAD PRICE ->" + price);
+    }
+    if (Integer.parseInt(seats) <= 0) {
+      throw new Exception("BAD SEATS ->" + seats);
+    }
+    if (!date.matches(datePattern)) {
+      throw new Exception("BAD DATE ->" + date);
+    }
+  }
+
+  //adds purchased ticket to DB
+  public boolean addTicketToDB(String textId, String flightId, String customerId,
+                               String flightClass, String price, String seats, String date) {
     try {
       con = DriverManager
               .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
@@ -647,17 +705,15 @@ public class Ticket extends javax.swing.JInternalFrame {
       pst.setString(6, seats);
       pst.setString(7, date);
       pst.executeUpdate();
-
-      JOptionPane.showMessageDialog(null, "Ticket Booked.........");
     } catch (SQLException ex) {
       Logger.getLogger(FlightAdder.class.getName()).log(Level.SEVERE, null, ex);
+      return false;
     }
-  }//GEN-LAST:event_jButton1ActionPerformed
+    return true;
+  }
 
   private void jButton2ActionPerformed(
           java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    // TODO add your handling code here:
-
     this.hide();
   }//GEN-LAST:event_jButton2ActionPerformed
 
