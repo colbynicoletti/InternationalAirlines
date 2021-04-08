@@ -59,7 +59,7 @@ class CustomerSearchTest {
 
     @Test
     public void testInvalidPassport_ThrowsException() {
-        JTextField passport = new JTextField("123SUCK");
+        JTextField passport = new JTextField("123");
         testCustomerSearch.setTxtfirstName(passport);
 
         assertThrows(Exception.class, () -> testCustomerSearch.browseButtonClick(evt));
@@ -67,7 +67,7 @@ class CustomerSearchTest {
 
     @Test
     public void testInvalidAddress_ThrowsException() {
-        JTextField address = new JTextField("123SUCK");
+        JTextField address = new JTextField("123");
         testCustomerSearch.setTxtfirstName(address);
 
         assertThrows(Exception.class, () -> testCustomerSearch.browseButtonClick(evt));

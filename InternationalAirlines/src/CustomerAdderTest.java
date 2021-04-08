@@ -43,7 +43,7 @@ public class CustomerAdderTest {
 
   @Test
   public void TestInvalidLastName_ThrowsException() {
-    lastName = "!@#MY";
+    lastName = "!@#";
     assertThrows(Exception.class, () -> testCustomerAdder
             .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
                     gender));
@@ -51,7 +51,7 @@ public class CustomerAdderTest {
 
   @Test
   public void TestInvalidNic_ThrowsException() {
-    nic = "(*)(*)";
+    nic = "(*)";
     assertThrows(Exception.class, () -> testCustomerAdder
             .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
                     gender));
