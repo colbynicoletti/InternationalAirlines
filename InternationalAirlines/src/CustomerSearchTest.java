@@ -1,22 +1,27 @@
 package InternationalAirlines.src;
 
+import java.awt.Component;
+import java.io.IOException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerSearchTest {
     private static CustomerSearch testCustomerSearch;
     private static ActionEvent evt;
+    String path;
 
     @BeforeEach
     public void initializeVariables() {
         testCustomerSearch = new CustomerSearch();
         evt = new ActionEvent(testCustomerSearch, 1, "");
+        path = "/Users/benjamindeleuze/Desktop/Test.png";
 
         //set valid input
         JTextField firstName = new JTextField("Ben");
@@ -30,7 +35,12 @@ class CustomerSearchTest {
         testCustomerSearch.setTxtNic(nic);
         testCustomerSearch.setTxtPassport(passport);
         testCustomerSearch.setTxtAddress(address);
+    }
 
+    @Test
+    public void testInvalidPic_ThrowsNullPointerException() {
+        path = "C:\\Users\\pc\\Documents\\New folder\\";
+        assertThrows(NullPointerException.class, () -> testCustomerSearch.testPic(path));
     }
 
     @Test
@@ -62,7 +72,7 @@ class CustomerSearchTest {
         JTextField passport = new JTextField("123");
         testCustomerSearch.setTxtfirstName(passport);
 
-        assertThrows(Exception.class, () -> testCustomerSearch.browseButtonClick(evt));
+        assertThrows(Exception.class, () -> testCustomerSearch.updateButtonClick(evt));
     }
 
     @Test
@@ -70,6 +80,6 @@ class CustomerSearchTest {
         JTextField address = new JTextField("123");
         testCustomerSearch.setTxtfirstName(address);
 
-        assertThrows(Exception.class, () -> testCustomerSearch.browseButtonClick(evt));
+        assertThrows(Exception.class, () -> testCustomerSearch.updateButtonClick(evt));
     }
 }

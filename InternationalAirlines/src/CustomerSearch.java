@@ -40,6 +40,7 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
   Connection con;
   PreparedStatement pst;
 
+  JFileChooser picchooser;
   String path = null;
   byte[] userimage = null;
 
@@ -403,13 +404,21 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
           java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
+    picchooser = new JFileChooser();
+    picchooser.showOpenDialog(null);
+    File pic = picchooser.getSelectedFile();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg");
+    picchooser.addChoosableFileFilter(filter);
+    path = pic.getAbsolutePath();
     try {
-      JFileChooser picchooser = new JFileChooser();
-      picchooser.showOpenDialog(null);
-      File pic = picchooser.getSelectedFile();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg");
-      picchooser.addChoosableFileFilter(filter);
-      path = pic.getAbsolutePath();
+      testPic(path);
+    } catch (IOException | NullPointerException e) {
+      JOptionPane.showMessageDialog(null, "<html><div color=red>Invalid Picture", "Error",
+          JOptionPane.ERROR_MESSAGE);
+    }
+  }//GEN-LAST:event_jButton1ActionPerformed
+
+  public void testPic(String path) throws IOException {
       BufferedImage img;
       img = ImageIO.read(picchooser.getSelectedFile());
       ImageIcon imageIcon = new ImageIcon(new
@@ -425,12 +434,7 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
       }
       userimage = baos.toByteArray();
 
-    } catch (IOException ex) {
-      Logger.getLogger(CustomerAdder.class.getName()).log(Level.SEVERE, null, ex);
-    }
-
-
-  }//GEN-LAST:event_jButton1ActionPerformed
+  }
 
   public void updateButtonClick(
       java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton2ActionPerformed

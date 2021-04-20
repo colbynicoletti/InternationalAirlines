@@ -24,6 +24,7 @@ public class Login extends javax.swing.JFrame {
 
   Connection con;
   PreparedStatement pst;
+  ResultSet rs;
 
   /**
    * This method is called from within the constructor to initialize the form. WARNING: Do NOT
@@ -148,7 +149,7 @@ public class Login extends javax.swing.JFrame {
   void jButton1ActionPerformed(
           ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
-    String userPattern = "[A-Z]+([A-Za-z'\\s\\-])*";
+    String userPattern = "^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$";
     String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
 
 
@@ -157,27 +158,21 @@ public class Login extends javax.swing.JFrame {
 
 
     if (!username.matches(userPattern)) {
+      rs = null;
       throw new Exception("BAD USERNAME ->" + username);
     }
 
     if (!password.matches(passwordPattern)) {
-      throw new Exception("BAD LASTNAME ->" + password);
+      rs = null;
+      throw new Exception("BAD PASSWORD ->" + password);
     }
 
     if (username.isEmpty() || password.isEmpty()) {
       JOptionPane.showMessageDialog(this, "UserName or Password Blank");
+      rs = null;
     } else {
       try {
-        Class.forName("com.mysql.cj.jdbc.Driver"); //com.mysql.jdbc.Driver
-        con = DriverManager
-            .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
-        pst = con.prepareStatement("select * from user where username = ? and password = ?");
-        pst.setString(1, username);
-        pst.setString(2, password);
-
-        ResultSet rs;
-        rs = pst.executeQuery();
-
+        searchForUser(username, password);
         if (rs.next()) {
           Main m = new Main();
           this.hide();
@@ -188,14 +183,23 @@ public class Login extends javax.swing.JFrame {
           textPass.setText("");
           textUser.requestFocus();
         }
-      } catch (ClassNotFoundException ex) {
-        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (SQLException ex) {
+      } catch (ClassNotFoundException | SQLException ex) {
         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
       }
     }
-
   }//GEN-LAST:event_jButton1ActionPerformed
+
+  public void searchForUser(String username, String password)
+      throws ClassNotFoundException, SQLException {
+    Class.forName("com.mysql.cj.jdbc.Driver"); //com.mysql.jdbc.Driver
+    con = DriverManager
+        .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
+    pst = con.prepareStatement("select * from user where username = ? and password = ?");
+    pst.setString(1, username);
+    pst.setString(2, password);
+
+    rs = pst.executeQuery();
+  }
 
   /**
    * @param args the command line arguments
