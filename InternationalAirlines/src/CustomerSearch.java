@@ -75,11 +75,11 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
     txtcontact = new javax.swing.JTextField();
     txtphoto = new javax.swing.JLabel();
     txtdob = new com.toedter.calendar.JDateChooser();
-    jButton1 = new javax.swing.JButton();
-    jButton2 = new javax.swing.JButton();
-    jButton3 = new javax.swing.JButton();
+    browseButton = new javax.swing.JButton();
+    updateButton = new javax.swing.JButton();
+    cancelButton = new javax.swing.JButton();
     txtcustid = new javax.swing.JTextField();
-    jButton4 = new javax.swing.JButton();
+    findButton = new javax.swing.JButton();
 
     jPanel1.setBackground(new java.awt.Color(51, 0, 255));
 
@@ -267,31 +267,35 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
 
     txtphoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-    jButton1.setText("Browse");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
+    browseButton.setText("Browse");
+    browseButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+        browseButtonClick(evt);
       }
     });
 
-    jButton2.setText("Update");
-    jButton2.addActionListener(new java.awt.event.ActionListener() {
+    updateButton.setText("Update");
+    updateButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton2ActionPerformed(evt);
+        try {
+          updateButtonClick(evt);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
     });
 
-    jButton3.setText("Cancel");
-    jButton3.addActionListener(new java.awt.event.ActionListener() {
+    cancelButton.setText("Cancel");
+    cancelButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton3ActionPerformed(evt);
+        cancelButtonClick(evt);
       }
     });
 
-    jButton4.setText("Find");
-    jButton4.addActionListener(new java.awt.event.ActionListener() {
+    findButton.setText("Find");
+    findButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton4ActionPerformed(evt);
+        findButtonClick(evt);
       }
     });
 
@@ -327,18 +331,18 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
                                         250, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(337, 337, 337)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE,
                                         87, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105,
+                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105,
                             javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
                             javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 81,
+                        .addComponent(findButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81,
                             javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
     );
@@ -351,7 +355,7 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
                     .addComponent(txtcustid, javax.swing.GroupLayout.PREFERRED_SIZE,
                         javax.swing.GroupLayout.DEFAULT_SIZE,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(findButton))
                 .addGap(38, 38, 38)
                 .addGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -368,15 +372,15 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
                                     javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(18, 18, 18)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33,
+                            .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33,
                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout
                                 .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38,
+                                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38,
                                     javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38,
+                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38,
                                     javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(49, 49, 49))
     );
@@ -395,8 +399,8 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_txtpassportActionPerformed
 
-  private void jButton1ActionPerformed(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  void browseButtonClick(
+          java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
     try {
@@ -428,22 +432,51 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
 
   }//GEN-LAST:event_jButton1ActionPerformed
 
-  private void jButton2ActionPerformed(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+  public void updateButtonClick(
+      java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
+    //REGEX Pattern - not finished
+    String firstNamePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
+    String lastNamePattern = "[A-Z]+([A-Za-z'\\s\\-])*";
+    String nicPattern = "[0-9]{8}";
+    String passportPattern = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
+    String addressPattern = "(\\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Rd|Blvd|Ln|St)\\.?)";
+    //String datePattern = "([12]\\d{3}\\/(0[1-9]|1[0-2])\\/(0[1-9]|[12]\\d|3[01]))";
+
     String id = txtcustid.getText();
+
+
     String firstname = txtfirstname.getText();
+    if (!firstname.matches(firstNamePattern)) {
+      throw new Exception("BAD FIRSTNAME ->" + firstname);
+    }
     String lastname = txtlastname.getText();
+    if (!lastname.matches(lastNamePattern)) {
+      throw new Exception("BAD LASTNAME ->" + lastname);
+    }
     String nic = txtnic.getText();
+    if (!nic.matches(nicPattern)) {
+      throw new Exception("BAD NIC ->" + nic);
+    }
     String passport = txtpassport.getText();
+    if (!passport.matches(passportPattern)) {
+      throw new Exception("BAD PASSPORT ->" + passport);
+    }
     String address = txtaddress.getText();
+    if (!address.matches(addressPattern)) {
+      throw new Exception("BAD ADDRESS ->" + address);
+    }
+
     JCalendar txtdob = new JCalendar();
     DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
 
     String date = da.format(txtdob.getDate());
     String Gender;
 
+
+
+    //Exception Handles
     if (r1.isSelected()) {
       Gender = "Male";
     } else {
@@ -481,14 +514,14 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
 
   }//GEN-LAST:event_jButton2ActionPerformed
 
-  private void jButton3ActionPerformed(
+  private void cancelButtonClick(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:
 
     this.hide();
   }//GEN-LAST:event_jButton3ActionPerformed
 
-  private void jButton4ActionPerformed(
+  private void findButtonClick(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     // TODO add your handling code here:
 
@@ -551,10 +584,10 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
   }//GEN-LAST:event_jButton4ActionPerformed
 
   //<editor-fold desc="SWING Variables Declarations">
-  private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton2;
-  private javax.swing.JButton jButton3;
-  private javax.swing.JButton jButton4;
+  private javax.swing.JButton browseButton;
+  private javax.swing.JButton updateButton;
+  private javax.swing.JButton cancelButton;
+  private javax.swing.JButton findButton;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel10;
   private javax.swing.JLabel jLabel2;
@@ -579,4 +612,23 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
   private javax.swing.JLabel txtphoto;
   private com.toedter.calendar.JDateChooser txtdob;
   //</editor-fold>
+
+  public void setTxtfirstName(JTextField txtfirstname) {
+    this.txtfirstname = txtfirstname;
+  }
+
+  public void setTxtlastName(JTextField txtlastname) {
+    this.txtlastname = txtlastname;
+  }
+
+  public void setTxtNic(JTextField txtnic) {
+    this.txtnic = txtnic;
+  }
+
+  public void setTxtPassport(JTextField txtPassport) { this.txtpassport = txtpassport; }
+
+  public void setTxtAddress(JTextField txtAddress) {
+    this.txtaddress = txtaddress;
+  }
+
 }

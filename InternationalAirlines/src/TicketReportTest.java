@@ -9,17 +9,17 @@ import org.mockito.Mockito;
 
 class TicketReportTest {
 
-  @Test
-  public void loadData_Using_TicketReportMock() {
-    //create mock TicketReport object
-    TicketReport mockReport = Mockito.spy(new TicketReport());
+    @Test
+    public void loadData_Using_TicketReportMock() {
+        //create mock TicketReport object
+        TicketReport mockReport = Mockito.mock(TicketReport.class);
 
-    //Prevent LoadData from being used but still called.
-    Mockito.doNothing().when(mockReport).LoadData();
+        //Prevent LoadData from being used but still called.
+        Mockito.doNothing().when(mockReport).LoadData();
 
-    //call initComponents (tested method)  to see if it loads data
-    mockReport.initComponents();
-    //Check to see if the LoadData has been accessed.
-    verify(mockReport, times(1)).LoadData();
-  }
+        //call initComponents (tested method)  to see if it loads data
+        mockReport.initComponents();
+        //Check to see if the LoadData has been accessed.
+        verify(mockReport, times(1)).LoadData();
+    }
 }

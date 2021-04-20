@@ -1,6 +1,7 @@
 package InternationalAirlines.src;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,7 +55,11 @@ public class Login extends javax.swing.JFrame {
     jButton1.setText("Login");
     jButton1.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+        try {
+          jButton1ActionPerformed(evt);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
     });
 
@@ -140,12 +145,24 @@ public class Login extends javax.swing.JFrame {
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jButton1ActionPerformed(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  void jButton1ActionPerformed(
+          ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
+    String userPattern = "[A-Z]+([A-Za-z'\\s\\-])*";
+    String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+
 
     String username = textUser.getText();
     String password = textPass.getText();
+
+
+    if (!username.matches(userPattern)) {
+      throw new Exception("BAD USERNAME ->" + username);
+    }
+
+    if (!password.matches(passwordPattern)) {
+      throw new Exception("BAD LASTNAME ->" + password);
+    }
 
     if (username.isEmpty() || password.isEmpty()) {
       JOptionPane.showMessageDialog(this, "UserName or Password Blank");
@@ -229,4 +246,12 @@ public class Login extends javax.swing.JFrame {
   private javax.swing.JPasswordField textPass;
   private javax.swing.JTextField textUser;
   //</editor-fold>
+
+  public void setTextUser(JTextField textUser) {
+    this.textUser = textUser;
+  }
+
+  public void setTextPassword(JPasswordField textPass) {
+    this.textPass = textPass;
+  }
 }
