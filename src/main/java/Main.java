@@ -1,5 +1,3 @@
-package InternationalAirlines.src;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,7 +24,7 @@ public class Main extends javax.swing.JFrame {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       Connection con = DriverManager
-          .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
+              .getConnection("jdbc:mysql://localhost:3306/airline", "airlineManager", "123");
       Statement stmt = con.createStatement();
       ResultSet rs = stmt.executeQuery(("select * from customer;"));
       while (rs.next()) {
@@ -65,12 +63,12 @@ public class Main extends javax.swing.JFrame {
     javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
     jDesktopPane1.setLayout(jDesktopPane1Layout);
     jDesktopPane1Layout.setHorizontalGroup(
-        jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGap(0, 400, Short.MAX_VALUE)
     );
     jDesktopPane1Layout.setVerticalGroup(
-        jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGap(0, 279, Short.MAX_VALUE)
     );
 
     customerMenu.setText("Customer");
@@ -142,19 +140,19 @@ public class Main extends javax.swing.JFrame {
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDesktopPane1)
     );
     layout.setVerticalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDesktopPane1)
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
   private void addCustomerAction(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+          java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
     // TODO add your handling code here:
 
     CustomerAdder cus = new CustomerAdder();
@@ -163,7 +161,7 @@ public class Main extends javax.swing.JFrame {
   }//GEN-LAST:event_jMenuItem1ActionPerformed
 
   private void searchCustomerAction(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+          java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
     // TODO add your handling code here:
 
     CustomerSearch scus = new CustomerSearch();
@@ -172,7 +170,7 @@ public class Main extends javax.swing.JFrame {
   }//GEN-LAST:event_jMenuItem2ActionPerformed
 
   private void addFlightAction(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+          java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
     // TODO add your handling code here:
     FlightAdder f = new FlightAdder();
     jDesktopPane1.add(f);
@@ -180,7 +178,7 @@ public class Main extends javax.swing.JFrame {
   }//GEN-LAST:event_jMenuItem4ActionPerformed
 
   private void ticketAction(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+          java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
     // TODO add your handling code here:
     Ticket t = new Ticket();
     jDesktopPane1.add(t);
@@ -188,7 +186,7 @@ public class Main extends javax.swing.JFrame {
   }//GEN-LAST:event_jMenuItem3ActionPerformed
 
   private void ticketReportAction(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+          java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
     // TODO add your handling code here:
 
     TicketReport ti = new TicketReport();
@@ -197,7 +195,7 @@ public class Main extends javax.swing.JFrame {
   }//GEN-LAST:event_jMenuItem6ActionPerformed
 
   private void userCreationAction(
-      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+          java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
     // TODO add your handling code here:
 
     UserCreator u = new UserCreator();
@@ -216,7 +214,7 @@ public class Main extends javax.swing.JFrame {
      */
     try {
       for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-          .getInstalledLookAndFeels()) {
+              .getInstalledLookAndFeels()) {
         if ("Nimbus".equals(info.getName())) {
           javax.swing.UIManager.setLookAndFeel(info.getClassName());
           break;
@@ -224,16 +222,16 @@ public class Main extends javax.swing.JFrame {
       }
     } catch (ClassNotFoundException ex) {
       java.util.logging.Logger.getLogger(Main.class.getName())
-          .log(java.util.logging.Level.SEVERE, null, ex);
+              .log(java.util.logging.Level.SEVERE, null, ex);
     } catch (InstantiationException ex) {
       java.util.logging.Logger.getLogger(Main.class.getName())
-          .log(java.util.logging.Level.SEVERE, null, ex);
+              .log(java.util.logging.Level.SEVERE, null, ex);
     } catch (IllegalAccessException ex) {
       java.util.logging.Logger.getLogger(Main.class.getName())
-          .log(java.util.logging.Level.SEVERE, null, ex);
+              .log(java.util.logging.Level.SEVERE, null, ex);
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
       java.util.logging.Logger.getLogger(Main.class.getName())
-          .log(java.util.logging.Level.SEVERE, null, ex);
+              .log(java.util.logging.Level.SEVERE, null, ex);
     }
     //</editor-fold>
 

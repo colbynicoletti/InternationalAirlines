@@ -1,5 +1,3 @@
-package InternationalAirlines.src;
-
 import com.toedter.calendar.JCalendar;
 
 import java.util.ArrayList;
@@ -628,7 +626,7 @@ public class Ticket extends javax.swing.JInternalFrame {
     return total;
   }
 
-  private void submitButtonAction(
+  void submitButtonAction(
           java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     String textId = textTicketNumber.getText();
@@ -755,4 +753,28 @@ public class Ticket extends javax.swing.JInternalFrame {
   private javax.swing.JLabel textTicketNumber;
   private javax.swing.JLabel textTotal;
   //</editor-fold>
+
+  public void setTextTicketNumber(String textTicketNumber) {
+    this.textTicketNumber.setText(textTicketNumber);
+  }
+
+  public void setTxtclass(String txtclass) {
+    this.txtclass.setSelectedItem(txtclass);
+  }
+
+  public void setTextCustomerId(String textCustomerId) {
+    this.textCustomerId.setText(textCustomerId);
+  }
+
+  public void setFlightNumber(String flightNumber) {
+    this.flightNumber.setText(flightNumber);
+  }
+
+  public void setTextPrice(String textPrice) {
+    this.textPrice.setText(textPrice);
+  }
+
+  public void setTextSeats(String textSeats) {
+    this.textSeats.setValue(Integer.parseInt(textSeats));
+  }
 }
