@@ -1,5 +1,3 @@
-package InternationalAirlines.src;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.sql.*;
@@ -146,8 +144,8 @@ public class Login extends javax.swing.JFrame {
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
-  void jButton1ActionPerformed(
-          ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton1ActionPerformed
+  public void jButton1ActionPerformed(
+      ActionEvent evt) throws Exception {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
     String userPattern = "^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$";
     String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";

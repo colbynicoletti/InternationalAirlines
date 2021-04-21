@@ -1,5 +1,3 @@
-package InternationalAirlines.src;
-
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.Vector;
@@ -20,7 +18,6 @@ public class TicketReport extends javax.swing.JInternalFrame {
    */
   public TicketReport() {
     initComponents();
-    //LoadData();
   }
 
   Connection con;

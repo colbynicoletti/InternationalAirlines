@@ -1,6 +1,3 @@
-package InternationalAirlines.src;
-
-
 import com.toedter.calendar.JCalendar;
 
 import javax.imageio.ImageIO;
@@ -400,8 +397,8 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_txtpassportActionPerformed
 
-  void browseButtonClick(
-          java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  public void browseButtonClick(
+      java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
     picchooser = new JFileChooser();

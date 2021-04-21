@@ -1,17 +1,11 @@
-package InternationalAirlines.src;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 class LoginTest {
 
@@ -35,16 +29,6 @@ class LoginTest {
 
     LoginTest.setTextUser(usernameTF);
     LoginTest.setTextPassword(passwordPF);
-
-  }
-
-  @Test
-  public void testDBConnection_UsingMock() throws Exception {
-    Login mockLogin = Mockito.spy(new Login());
-    mockLogin.setTextUser(usernameTF);
-    mockLogin.setTextPassword(passwordPF);
-    mockLogin.jButton1ActionPerformed(evt);
-    verify(mockLogin, times(1)).searchForUser(username, password);
 
   }
 

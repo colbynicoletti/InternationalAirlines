@@ -1,7 +1,6 @@
-package InternationalAirlines.src;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -16,11 +15,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 
-class TicketTest {
+public class TicketIntegrationTest {
 
   private Ticket testTicket = new Ticket();
   Connection con;
@@ -45,7 +44,6 @@ class TicketTest {
     DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
     date = da.format(dDate);
   }
-
 
   @Test
   public void integrationTest_addToDB_Using_TicketMock() {
@@ -184,75 +182,5 @@ class TicketTest {
     pst.setString(1, textId);
     pst.setString(2, customerId);
     pst.executeUpdate();
-  }
-
-  @Test
-  public void testTicketValidInput_NoExceptionThrown() {
-    assertDoesNotThrow(() -> testTicket
-        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
-  }
-
-  @Test
-  public void testInvalidTextId_ThrowsException() {
-    textId = "Please";
-    assertThrows(Exception.class, () -> testTicket
-        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
-  }
-
-  @Test
-  public void testInvalidFlightId_ThrowsException() {
-    flightId = "Don't";
-    assertThrows(Exception.class, () -> testTicket
-        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
-  }
-
-  @Test
-  public void testInvalidCustomerId_ThrowsException() {
-    customerId = "Crash";
-    assertThrows(Exception.class, () -> testTicket
-        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
-  }
-
-  @Test
-  public void testInvalidFlightClass_ThrowsException() {
-    flightClass = "Into";
-    assertThrows(Exception.class, () -> testTicket
-        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
-  }
-
-  @Test
-  public void testInvalidPrice_ThrowsException() {
-    price = "-500";
-    assertThrows(Exception.class, () -> testTicket
-        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
-  }
-
-  @Test
-  public void testInvalidSeats_ThrowsException() {
-    seats = "0";
-    assertThrows(Exception.class, () -> testTicket
-        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
-  }
-
-  @Test
-  public void testInvalidDate_ThrowsException() {
-    date = "09-11-2001";
-    assertThrows(Exception.class, () -> testTicket
-        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
-  }
-
-  @Test
-  public void testZeroPrice_ThrowsException() {
-    assertThrows(Exception.class, () -> testTicket.calculateCost(0, 1));
-  }
-
-  @Test
-  public void testNegativeSeats_ThrowsException() {
-    assertThrows(Exception.class, () -> testTicket.calculateCost(15, -1));
-  }
-
-  @Test
-  public void testCoastValidInput_NoExceptionThrown() throws Exception {
-    assertEquals(testTicket.calculateCost(15, 2), 30);
   }
 }
