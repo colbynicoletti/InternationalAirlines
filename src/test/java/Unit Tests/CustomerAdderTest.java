@@ -1,5 +1,3 @@
-package InternationalAirlines.src;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.DateFormat;
