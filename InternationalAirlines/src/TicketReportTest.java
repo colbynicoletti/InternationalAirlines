@@ -12,7 +12,7 @@ class TicketReportTest {
     @Test
     public void loadData_Using_TicketReportMock() {
         //create mock TicketReport object
-        TicketReport mockReport = Mockito.mock(TicketReport.class);
+        TicketReport mockReport = Mockito.spy(new TicketReport());
 
         //Prevent LoadData from being used but still called.
         Mockito.doNothing().when(mockReport).LoadData();
