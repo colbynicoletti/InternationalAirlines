@@ -1,3 +1,4 @@
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.DateFormat;
@@ -33,7 +34,7 @@ public class CustomerAdderTest {
 
   @Test
   public void testInvalidFirstName_ThrowsException() {
-    firstName = "123";
+    firstName = "123SUCK";
     assertThrows(Exception.class, () -> testCustomerAdder
         .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
             gender));
@@ -41,7 +42,7 @@ public class CustomerAdderTest {
 
   @Test
   public void TestInvalidLastName_ThrowsException() {
-    lastName = "!@#MO";
+    lastName = "!@#";
     assertThrows(Exception.class, () -> testCustomerAdder
         .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
             gender));
@@ -49,7 +50,7 @@ public class CustomerAdderTest {
 
   @Test
   public void TestInvalidNic_ThrowsException() {
-    nic = "(*)///(*)";
+    nic = "(*)";
     assertThrows(Exception.class, () -> testCustomerAdder
         .testInputForNewCustomer(firstName, lastName, nic, passport, address, date, contact,
             gender));

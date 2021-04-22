@@ -1,3 +1,4 @@
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.DateFormat;
@@ -32,56 +33,56 @@ class TicketTest {
   @Test
   public void testTicketValidInput_NoExceptionThrown() {
     assertDoesNotThrow(() -> testTicket
-            .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
+        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
   }
 
   @Test
   public void testInvalidTextId_ThrowsException() {
     textId = "Please";
     assertThrows(Exception.class, () -> testTicket
-            .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
+        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
   }
 
   @Test
   public void testInvalidFlightId_ThrowsException() {
     flightId = "Don't";
     assertThrows(Exception.class, () -> testTicket
-            .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
+        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
   }
 
   @Test
   public void testInvalidCustomerId_ThrowsException() {
     customerId = "Crash";
     assertThrows(Exception.class, () -> testTicket
-            .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
+        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
   }
 
   @Test
   public void testInvalidFlightClass_ThrowsException() {
     flightClass = "Into";
     assertThrows(Exception.class, () -> testTicket
-            .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
+        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
   }
 
   @Test
   public void testInvalidPrice_ThrowsException() {
     price = "-500";
     assertThrows(Exception.class, () -> testTicket
-            .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
+        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
   }
 
   @Test
   public void testInvalidSeats_ThrowsException() {
     seats = "0";
     assertThrows(Exception.class, () -> testTicket
-            .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
+        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
   }
 
   @Test
   public void testInvalidDate_ThrowsException() {
     date = "09-11-2001";
     assertThrows(Exception.class, () -> testTicket
-            .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
+        .testInputForTickets(textId, flightId, customerId, flightClass, price, seats, date));
   }
 
   @Test

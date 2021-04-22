@@ -148,6 +148,16 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jDesktopPane1)
     );
 
+    customerMenu.setName("CustomerMenu");
+    searchCustomerMenu.setName("CustomerSearch");
+    addCustomerItem.setName("CustomerAdd");
+    ticketsMenu.setName("TicketMenu");
+    bookTicketItem.setName("BookTicket");
+    ticketReportItem.setName("TicketReport");
+    flightMenu.setName("FlightMenu");
+    addFlightMenu.setName("AddFlight");
+    userMenu.setName("UserMenu");
+    userCreationMenu.setName("UserCreation");
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
