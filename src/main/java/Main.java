@@ -57,6 +57,8 @@ public class Main extends javax.swing.JFrame {
     userMenu = new javax.swing.JMenu();
     userCreationMenu = new javax.swing.JMenuItem();
 
+
+
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setPreferredSize(new java.awt.Dimension(1366, 768));
 
@@ -148,6 +150,9 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jDesktopPane1)
     );
 
+    customerMenu.setName("CustomerMenu");
+    searchCustomerMenu.setName("CustomerSearch");
+    addCustomerItem.setName("CustomerAdd");
     pack();
   }// </editor-fold>//GEN-END:initComponents
 

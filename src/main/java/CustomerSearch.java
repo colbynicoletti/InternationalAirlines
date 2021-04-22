@@ -383,6 +383,8 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
                 .addGap(49, 49, 49))
     );
 
+    findButton.setName("FindButton");
+    txtcustid.setName("CustomerIDTF");
     pack();
   }// </editor-fold>//GEN-END:initComponents
 

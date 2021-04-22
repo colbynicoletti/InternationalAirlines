@@ -140,6 +140,10 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
     );
 
+    textUser.setName("UsernameTF");
+    textPass.setName("PasswordTF");
+    jButton1.setName("SubmitButton");
+
     pack();
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents

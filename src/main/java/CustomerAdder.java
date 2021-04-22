@@ -71,6 +71,7 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
     browseButton = new javax.swing.JButton();
     addButton = new javax.swing.JButton();
     cancelButton = new javax.swing.JButton();
+    picchooser = new javax.swing.JFileChooser();
 
     jPanel1.setBackground(new java.awt.Color(51, 0, 255));
 
@@ -368,7 +369,17 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
                                                                     38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGap(49, 49, 49))
     );
-
+    txtfirstname.setName("Firstname");
+    txtlastname.setName("Lastname");
+    txtnic.setName("Nic");
+    txtpassport.setName("Passport");
+    txtaddress.setName("Address");
+    txtdob.setName("DOB");
+    maleRadioButton.setName("Male");
+    txtcontact.setName("Contact");
+    browseButton.setName("Browse");
+    picchooser.setName("File");
+    cancelButton.setName("Cancel");
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
@@ -405,10 +416,8 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
 
   private void jButton1ActionPerformed(
           java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // TODO add your handling code here:
 
     try {
-      JFileChooser picchooser = new JFileChooser();
       picchooser.showOpenDialog(null);
       File pic = picchooser.getSelectedFile();
       FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "png", "jpg");
@@ -563,6 +572,6 @@ public class CustomerAdder extends javax.swing.JInternalFrame {
   private javax.swing.JTextField txtpassport;
   private javax.swing.JLabel txtphoto;
   private com.toedter.calendar.JDateChooser txtdob;
+  private JFileChooser picchooser;
   //</editor-fold>
-
 }
