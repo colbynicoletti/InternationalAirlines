@@ -264,7 +264,13 @@ public class FlightAdder extends javax.swing.JInternalFrame {
                     javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
     );
-
+    txtflightname.setName("FlightName");
+    textSource.setName("Source");
+    textDepart.setName("Depart");
+    txtdtime.setName("DepTime");
+    txtarrtime.setName("ArrTime");
+    txtflightcharge.setName("Charge");
+    cancelButton.setName("Cancel");
     pack();
   }// </editor-fold>//GEN-END:initComponents
 

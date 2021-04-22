@@ -385,6 +385,7 @@ public class CustomerSearch extends javax.swing.JInternalFrame {
 
     findButton.setName("FindButton");
     txtcustid.setName("CustomerIDTF");
+    cancelButton.setName("Cancel");
     pack();
   }// </editor-fold>//GEN-END:initComponents
 

@@ -482,7 +482,15 @@ public class Ticket extends javax.swing.JInternalFrame {
                                     41, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
-
+    text_depart.setName("Depart");
+    textSource.setName("Source");
+    jButton3.setName("SearchFlight");
+    jTable1.setName("Table");
+    textCustomerId.setName("CustomerID");
+    jButton4.setName("SearchCustomer");
+    txtclass.setName("Class");
+    textSeats.setName("Seats");
+    cancelButton.setName("Cancel");
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
@@ -588,8 +596,6 @@ public class Ticket extends javax.swing.JInternalFrame {
 
   private void ticketTableClickedAction(
       java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-    // TODO add your handling code here:
-
     DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
 
     int selectIndex = jTable1.getSelectedRow();

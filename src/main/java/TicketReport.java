@@ -79,7 +79,7 @@ public class TicketReport extends javax.swing.JInternalFrame {
                     javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
     );
-
+    jButton1.setName("Cancel");
     pack();
     //load tickets from DB
     LoadData();

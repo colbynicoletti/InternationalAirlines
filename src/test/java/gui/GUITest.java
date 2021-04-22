@@ -1,16 +1,7 @@
 
-import static org.assertj.swing.launcher.ApplicationLauncher.application;
-import static org.assertj.swing.finder.WindowFinder.findFrame;
-
-
-import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
-import org.assertj.swing.fixture.JTextComponentFixture;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,8 +25,8 @@ public class GUITest {
   }
 
   @AfterEach
-  protected void tearDown () {
-    window. cleanUp () ;
+  protected void tearDown() {
+    window.cleanUp();
   }
 
   @Test
@@ -55,6 +46,7 @@ public class GUITest {
     window.menuItem("CustomerSearch").click();
     window.textBox("CustomerIDTF").enterText("cs001");
     window.button("FindButton").click();
+    window.button("Cancel").click();
   }
 
   @Test
@@ -73,4 +65,57 @@ public class GUITest {
     window.button("Cancel").click();
   }
 
+  @Test
+  public void bookTicketTest() {
+    window = new FrameFixture(mainFrame);
+    window.show();
+    window.menuItem("TicketMenu").click();
+    window.menuItem("BookTicket").click();
+    window.comboBox("Source").selectItem(0);
+    window.comboBox("Depart").selectItem(2);
+    window.button("SearchFlight").click();
+    window.table("Table").selectRows(0);
+    window.textBox("CustomerID").enterText("cs001");
+    window.button("SearchCustomer").click();
+    window.comboBox("Class").selectItem(0);
+    window.spinner("Seats").increment();
+    window.button("Cancel").click();
+  }
+
+  @Test
+  public void ticketReportTest() {
+    window = new FrameFixture(mainFrame);
+    window.show();
+    window.menuItem("TicketMenu").click();
+    window.menuItem("TicketReport").click();
+    window.button("Cancel").click();
+  }
+
+  @Test
+  public void addFlightTest() {
+    window = new FrameFixture(mainFrame);
+    window.show();
+    window.menuItem("FlightMenu").click();
+    window.menuItem("AddFlight").click();
+    window.textBox("FlightName").enterText("TestFlight");
+    window.comboBox("Source").selectItem(0);
+    window.comboBox("Depart").selectItem(2);
+    window.textBox("DepTime").enterText("9:00");
+    window.textBox("ArrTime").enterText("13:00");
+    window.textBox("Charge").enterText("10000");
+    window.button("Cancel").click();
+  }
+
+  @Test
+  public void addUserTest() {
+    window = new FrameFixture(mainFrame);
+    window.show();
+    window.menuItem("UserMenu").click();
+    window.menuItem("UserCreation").click();
+    window.textBox("Firstname").enterText("TestFirstname");
+    window.textBox("Lastname").enterText("TestLastname");
+    window.textBox("Username").enterText("TestUsername");
+    window.textBox("Password").enterText("TestPa$$word");
+    window.button("Cancel").click();
+  }
 }

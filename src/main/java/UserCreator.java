@@ -184,7 +184,11 @@ public class UserCreator extends javax.swing.JInternalFrame {
                     javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
     );
-
+    textFirstName.setName("Firstname");
+    textLastName.setName("Lastname");
+    textUsername.setName("Username");
+    textPassword.setName("Password");
+    jButton2.setName("Cancel");
     pack();
   }// </editor-fold>//GEN-END:initComponents
 

@@ -24,7 +24,7 @@ class FlightAdderTest {
     JTextField flightCharge = new JTextField("Deleuze");
     JComboBox Source = new JComboBox();
     JComboBox Depart = new JComboBox();
-    JTextField dTime = new JTextField("1 Liberty St");
+    JTextField dTime = new JTextField("9:00");
     JTextField arrTime = new JTextField("9549376477");
     testFlightAdder.setTxtflightname(flightName);
     testFlightAdder.setTxtflightcharge(flightCharge);
